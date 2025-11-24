@@ -1,0 +1,303 @@
+---
+title: 'Introducing CAPE: Breaking Through the Post-Training Scaling Wall'
+publishedAt: '2025-11-24'
+summary: 'An open-source framework that replaces expensive preference annotation with LLM-assisted policy authoring, making post-training transparent, auditable, and accessible.'
+---
+
+We're releasing CAPE (Capability Achievement via Policy Enforcement), an open-source framework that replaces expensive preference annotation with LLM-assisted policy authoring. Domain experts describe requirements in natural language, an LLM drafts executable policies, and CAPE trains models to satisfy them. This makes post-training transparent, auditable, and accessible to organizations without ML teams.
+
+Read the paper → | Try CAPE-Core → | Join the community →
+
+## The Problem: Preference Learning Has Hit a Wall
+
+Modern AI post-training relies heavily on human preferences. Show annotators two model outputs, ask which is better, collect thousands of these comparisons, train a reward model, run RLHF or DPO. Repeat for each new model generation.
+
+This worked well when models were weak. But as models improve, something breaks down.
+
+When most outputs are "pretty good," annotators struggle to consistently pick winners. Is output A's reasoning clearer, or is output B's formatting better? Should we prefer conciseness or thoroughness? These judgments become increasingly arbitrary.
+
+Under the Bradley-Terry preference model, the learning signal scales with (1 - 2δ), where δ is the annotator disagreement rate. As models approach 70-80% task accuracy on structured tasks, disagreement rates climb toward 50%. The gradient vanishes. Additional compute doesn't translate into proportional improvement.
+
+We call this the post-training scaling wall: even if a model could improve, the supervision signal becomes too noisy to guide it.
+
+Internal RLHF pipelines at multiple organizations have observed this plateau on structured, evaluable tasks—math, code, tool use, citation-based QA. The first two stages of training (pretraining and instruction tuning) scale beautifully with compute. The third stage (post-training) has become the bottleneck.
+
+## The CAPE Approach: Policies Instead of Preferences
+
+CAPE asks a different question. Instead of "which output is better?", we ask: "does this output satisfy our requirements?"
+
+The requirements are expressed as executable policies over structured graphs:
+
+1. An LLM extracts structure from the model output into a PredicateGraph—a JSON-like representation containing entities, operations, claims, citations, tool calls, discourse acts, sentiment markers, and stylistic features.
+
+2. Policies are evaluated over the graph. A policy is deterministic code that checks whether certain conditions hold: "arithmetic reasoning must match tool call arguments," "acute medical symptoms require escalation advice," "factual claims must have citations."
+
+3. Violations are corrected—sometimes with literal fixes (change calc(7.1) to calc(7.095)), sometimes with templates (append a medical disclaimer), sometimes with constrained LLM rewrites (remove apologies from refusals while preserving meaning).
+
+4. The model trains on corrected outputs, gradually learning to produce answers that satisfy policies without intervention.
+
+The crucial difference: supervision noise is no longer tied to human disagreement. It's determined by extraction fidelity—an engineering problem that can be improved with better models, synthetic data, ensembles, and iterative refinement.
+
+## The Secret Weapon: LLM-Assisted Policy Authoring
+
+Here's where CAPE becomes practical.
+
+Policies don't need to be hand-coded by ML engineers. LLMs can draft them. A domain expert describes requirements in natural language, an LLM generates the policy code, the expert validates on a few dozen examples, iterates if needed, and ships it.
+
+Example: A compliance officer at a financial institution wants models that avoid speculative language like "guaranteed returns" and always include risk disclosures for product recommendations.
+
+Traditional RLHF approach:
+
+* Collect 5,000+ examples of preferred communication style
+
+* Train annotators on company-specific preferences
+
+* Annotate thousands of pairwise comparisons
+
+* Train a custom reward model
+
+* Run RLHF training
+
+* Retrain when the base model updates
+
+* Timeline: 3-6 months. Cost: $50K-$500K. Requires: ML team + annotation infrastructure
+
+CAPE approach:
+
+* Compliance officer writes 3-4 natural language requirement descriptions
+
+* LLM drafts policies checking for prohibited language and required disclosures
+
+* Officer validates on 50 historical customer interactions
+
+* Policies are refined, then used in training
+
+* Policies transfer automatically to new base models
+
+* Timeline: 1 week. Cost: $500-$5K. Requires: Domain expert (no ML background needed)
+
+The economic difference is dramatic. More importantly, the policies are readable, debuggable, and maintainable. When a policy misfires, you read it, understand the issue, and fix it. When a reward model misbehaves, you see bad outputs but must infer the cause through expensive probing and retraining.
+
+## Three Tiers of Enforcement
+
+CAPE uses the same mechanism—PredicateGraphs plus executable policies—to handle three different kinds of requirements:
+
+### Tier 1: Objective Correctness
+
+Capabilities with clear right or wrong answers. Arithmetic consistency, tool-use correctness, code safety (no eval), schema compliance, citation validity.
+
+Example policy (LLM-generated): "If a model shows arithmetic reasoning leading to value X, and then makes a tool call with argument Y, X and Y must match exactly."
+
+The LLM drafts code that walks the PredicateGraph, finds arithmetic operations and tool calls, checks for consistency, and raises violations when they differ.
+
+### Tier 2: Safety and Governance
+
+Rules that encode regulatory or organizational constraints. Medical disclaimers for acute symptoms, financial risk disclosures, legal hedge language, jurisdiction-specific compliance requirements.
+
+Example: A model responding to "I have chest pain and shortness of breath that started an hour ago" must include explicit guidance to seek emergency medical care, not reassurance to "rest and see if it improves."
+
+Policies can encode externally established guidelines (medical protocols, SEC regulations, enterprise compliance rules) in auditable form.
+
+### Tier 3: Structural Style and Voice
+
+The structural scaffolding that supports subjective qualities. Reasoning-before-answer patterns, refusals that explain constraints rather than apologizing repeatedly, emotional acknowledgment in sensitive contexts, callbacks in humor, consistent brand voice.
+
+Important caveat: CAPE enforces the structure—ensuring acknowledgments exist, callbacks are present, citations are attached—but doesn't guarantee the quality itself. A callback policy ensures humor-shaped structure; it doesn't ensure the callback is actually funny.
+
+For Tier 3, CAPE is best viewed as providing necessary conditions. Preference learning can then optimize for the sufficient conditions that make outputs genuinely excellent rather than merely adequate.
+
+## Empirical Results: CAPE Continues Improving Where DPO Plateaus
+
+We tested CAPE on 30,000 examples across three domains: arithmetic with tool calls, safe Python code generation, and citation-constrained question answering.
+
+Key finding: DPO and outcome-based RL reduce violation rates initially but plateau at 10-20%. CAPE continues reducing violations beyond these plateaus, reaching floors of 2-8% that align with extractor error rather than preference noise.
+
+| Domain | DPO plateau | CAPE floor (strong extractor) |
+|--------|-------------|-------------------------------|
+| Arithmetic | ~12% violations | ~2-3% violations |
+| Code safety | ~18% violations | ~4-5% violations |
+| Citation QA | ~15% violations | ~3-4% violations |
+
+The violations that remain correlate with extractor failures (false negatives where structure is missed, false positives where structure is hallucinated) rather than model capacity or preference noise. When we swap a stronger extractor for an open-weight model, residual violations roughly double—confirming that extraction fidelity, not the approach itself, determines the floor.
+
+The computational overhead is modest: extraction adds 15-25% inference cost, policy evaluation is negligible (<1%). Total training time is comparable to DPO when accounting for the fact that CAPE continues improving while DPO plateaus.
+
+## Turning RLHF Data into Permanent Assets
+
+Labs have already spent tens of millions of dollars collecting preference data. In traditional RLHF, these datasets are consumed to train reward models, then effectively discarded when the base model changes.
+
+CAPE reuses this data by mining it for structural invariants. Extract PredicateGraphs from preferred and dispreferred outputs, identify patterns that correlate with preference (citations attached to claims, reasoning before answers, disclaimers in medical advice), describe these patterns in natural language, have an LLM draft policies, validate them, and deploy.
+
+The result: RLHF datasets become libraries of reusable policies that transfer across model generations. The investment in preference annotation compounds rather than depreciating.
+
+## From Opaque to Auditable
+
+We can position different post-training approaches on a transparency spectrum:
+
+Fully opaque ←──────────────────────→ Fully deterministic
+
+    ↓                                        ↓
+
+  RLHF                                  Hard-coded rules
+
+  (reward model                         (expert systems,
+
+   black box)                            brittle)
+
+         CAPE with LLM-assisted policies
+
+         ↓
+
+    [Readable, debuggable, versioned,
+
+     composable, transferable]
+
+CAPE isn't perfectly deterministic—LLMs write policies, extractors make errors—but it surfaces the logic in a form that can be inspected, debugged, and improved. This is qualitatively different from reward models where the "why" is compressed into 7 billion opaque parameters.
+
+When model behavior violates expectations:
+
+* With CAPE: Read the policies, find the misfire, fix or add a policy, redeploy
+
+* With RLHF: Observe bad outputs, probe the reward model, hypothesize causes, collect new preference data, retrain, hope it worked
+
+For regulated industries (healthcare, finance, legal) where audit trails matter, this transparency is not just convenient—it's often a requirement.
+
+## The Extractor: A New Kind of Reward Model
+
+Under CAPE, the extractor plays a role analogous to the reward model in RLHF: it's the primary source of ground truth for training.
+
+Any extraction error propagates directly into the training signal. If the extractor misses that a tool call doesn't match computed values (false negative), the policy never fires, and the model trains on the incorrect output. If the extractor hallucinates a violation (false positive), a correct answer gets "fixed" into something worse.
+
+The good news: unlike human disagreement rates that worsen as models improve, extraction fidelity can be continuously improved:
+
+* Synthetic data with perfect graphs for math, code, and tool orchestration
+
+* Self-bootstrapping by applying CAPE to the extractor itself
+
+* Ensembles that require agreement before applying corrections
+
+* Targeted human verification on the small fraction of uncertain extractions
+
+* LLM-assisted improvement analyzing error patterns and generating adversarial examples
+
+We don't need perfect extractors—just extractors better than human annotator agreement rates (which approach 50% at the capability frontier). This is an engineering problem with multiple levers, not a fundamental barrier.
+
+## Open Challenges (And Why They're Tractable)
+
+CAPE doesn't solve everything. Several challenges remain:
+
+**Ontology evolution**: The PredicateGraph schema needs to be rich enough to represent relevant structures without becoming unwieldy. As new domains are added, careful versioning and migration will be needed.
+
+**Long-context extraction**: Reliable graph extraction from very long contexts (tens of thousands of tokens) is harder than from short answers. Hierarchical extraction and efficient segmentation will help.
+
+**Subjective capabilities beyond structure**: Creativity, originality, aesthetic judgment, subtle irony—these likely remain beyond what policies alone can enforce. CAPE handles necessary conditions; other methods provide sufficient conditions.
+
+**Policy interactions at scale**: As enterprises accumulate hundreds of policies, conflict resolution and debugging become substantial engineering challenges. Good tooling will be essential.
+
+**Extractor generalization**: Building extractors that maintain high fidelity across many domains is an open problem. Domain-specific fine-tuning will likely remain valuable.
+
+These are the kinds of engineering and governance problems that arise when a technique moves from research to production—a sign that the core approach is practically viable.
+
+## What We're Releasing
+
+CAPE-Core is an open-source implementation including:
+
+* PredicateGraph schema with versioned specifications and extension mechanisms
+
+* Reference extractors for math, code, and QA using open-weight models
+
+* Policy engine with semantic routing and deterministic evaluation
+
+* LLM policy authoring tools with templates, validation harnesses, and iterative refinement workflows
+
+* Correction engine supporting literal repairs, templates, and constrained rewrites
+
+* Starter policy packs for arithmetic, code safety, and citation integrity
+
+* Evaluation harness for measuring violation rates and comparing extractors
+
+* Documentation and tutorials for domain experts without ML backgrounds
+
+Everything is released under a permissive license. We're aiming to build a shared policy ecosystem where:
+
+* Labs integrate CAPE into training pipelines
+
+* Enterprises contribute sector-specific policy packs
+
+* Researchers explore new policy designs and extraction methods
+
+* Auditors test model behavior against transparent standards
+
+* Domain experts author policies without needing ML expertise
+
+## Who Should Use CAPE
+
+* Regulated industries (healthcare, finance, legal) needing auditable compliance and clear policy enforcement.
+
+* Developer tools (coding assistants, IDEs) requiring correctness guarantees for generated code.
+
+* Enterprise deployments with specific brand voice, safety constraints, or governance requirements.
+
+* Research teams exploring alternatives to preference-based post-training or working on structured tasks where DPO/RLHF have plateaued.
+
+* Mid-sized organizations that need custom model behavior but can't afford months-long RLHF cycles.
+
+## Combining CAPE with Preference Learning
+
+CAPE is complementary to preference learning, not a replacement.
+
+Sequential hybrid approach:
+
+1. Phase 1: Train with CAPE to establish correctness, safety, and structural foundations
+
+2. Phase 2: Apply DPO/RLHF to optimize subjective quality within the CAPE-constrained space
+
+This means preference learning operates where major violations have been eliminated, making the signal cleaner and more focused on genuine quality differences.
+
+Example: For medical advice, CAPE ensures acute symptoms trigger escalation and disclaimers are present (structural safety). Preferences then optimize how empathetically the advice is phrased and the balance between reassurance and caution (subjective quality).
+
+The result: models that are structurally safe and compliant (CAPE) while also being genuinely helpful and empathetic (preferences).
+
+## The Path Forward
+
+The post-training scaling wall won't be solved by collecting more preference data. As models improve, human disagreement increases, and the supervision signal degrades—this is a fundamental limit, not an annotation problem.
+
+CAPE offers an alternative: make requirements explicit, use LLMs to help articulate and enforce them, and build a shared ecosystem of auditable policies that make model behavior transparent, maintainable, and continuously improvable.
+
+Even if CAPE ultimately applies "only" to structured and evaluable capabilities—math, code, tool use, citations, safety constraints, regulatory compliance—that subset includes many of the tasks where society most needs models to be reliably correct, safe, and compliant.
+
+For those domains, CAPE provides a credible path to continue scaling post-training long after preference-based methods have run out of signal.
+
+## Get Involved
+
+Read the paper: arxiv.org/abs/XXXX.XXXXX
+
+Try CAPE-Core: github.com/your-org/cape-core
+
+Join the community: Discord/Slack link
+
+Contribute:
+
+* Domain-specific extractors (medical, legal, financial, scientific)
+
+* Policy packs for new sectors and use cases
+
+* Improved extraction methods and benchmarks
+
+* Policy authoring tools and best practices
+
+* Case studies from production deployments
+
+We're particularly interested in hearing from:
+
+* Domain experts who want to encode requirements without learning ML
+
+* Regulated industries exploring auditable model behavior
+
+* Researchers working on structured reasoning, tool use, or post-training
+
+* Enterprises looking for cost-effective model customization
+
+The preference uncertainty barrier defined the limits of the last generation of post-training. CAPE is designed for what comes next.
+
+Posted November 24, 2025 | Questions? Feedback? Join the discussion on Discord/Slack or open an issue on GitHub
