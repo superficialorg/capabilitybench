@@ -39,7 +39,7 @@ export default function Page() {
                 <p className="text-black w-[100px] tabular-nums">
                   {formatDate(post.metadata.publishedAt, false)}
                 </p>
-                <p className="text-black tracking-tight">
+                <p className="text-black tracking-tight font-medium">
                   {post.metadata.title}
                 </p>
               </div>

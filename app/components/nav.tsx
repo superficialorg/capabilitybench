@@ -25,7 +25,7 @@ export function Navbar() {
           id="nav"
         >
           <div className="flex flex-row items-center space-x-0 pr-10">
-            <Link href="/" className="flex items-center gap-2 align-middle relative py-1 px-2 m-1">
+            <Link href="/" className="flex items-center gap-2 align-middle relative py-1 px-2 m-1 mr-6">
               <Image
                 src="/superficial-icon.png"
                 alt="Superficial Labs"
