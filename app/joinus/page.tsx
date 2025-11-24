@@ -1,4 +1,5 @@
-import { BlogPosts } from 'app/components/posts'
+import Link from 'next/link'
+import { formatDate, getBlogPosts } from 'app/research/utils'
 
 export const metadata = {
   title: 'Join us',
@@ -6,13 +7,43 @@ export const metadata = {
 }
 
 export default function Page() {
+  let allBlogs = getBlogPosts()
+  // Filter to only show the post-training post, exclude CAPE post (vim)
+  let joinusPosts = allBlogs.filter((post) => post.slug === 'post-training')
+
   return (
     <section>
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">Join us</h1>
-      <p className="mb-4">
-        Superficial Labs is an artificial intelligence research and product company. Our mission is to accelerate human progress by advancing AI capability and reliability. We're building systems that push the frontier of how AI can be applied in today's most critical domains. If you want to work on hard problems with meaningful impact, we'd love to meet you.
+      <p className="mb-12">
+        Superficial Labs is an artificial intelligence research and product company. Our goal is to accelerate human progress by compounding AI capability and reliability in the world's most critical applications. We're building systems that push the frontier of what AI can do in high-impact domains. If you want to tackle hard problems with real-world significance, we'd love to meet you.
       </p>
-      <BlogPosts />
+      <div>
+        {joinusPosts
+          .sort((a, b) => {
+            if (
+              new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
+            ) {
+              return -1
+            }
+            return 1
+          })
+          .map((post) => (
+            <Link
+              key={post.slug}
+              className="flex flex-col space-y-1 mb-4"
+              href={`/research/${post.slug}`}
+            >
+              <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
+                <p className="text-black w-[100px] tabular-nums">
+                  {formatDate(post.metadata.publishedAt, false)}
+                </p>
+                <p className="text-black tracking-tight">
+                  {post.metadata.title}
+                </p>
+              </div>
+            </Link>
+          ))}
+      </div>
     </section>
   )
 }
