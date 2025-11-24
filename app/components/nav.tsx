@@ -31,7 +31,7 @@ export function Navbar() {
                 alt="Superficial Labs"
                 width={24}
                 height={24}
-                className="h-6 w-6"
+                className="h-[18px] w-[18px]"
               />
               <span className={`${inter.className} font-medium`}>Superficial</span>
             </Link>

@@ -20,8 +20,8 @@ export default function Page() {
       <p className="mb-4">
         Our goal is to accelerate human progress by making AI capable and reliable enough for the world's most important work.
       </p>
-      <div className="mt-12 mb-4 flex items-center gap-2">
-        <span className="flex items-center gap-1.5 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-200">
+      <div className="mt-12 mb-4 flex flex-col gap-2">
+        <span className="flex items-center gap-1.5 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-200 w-fit">
           <span className="h-1.5 w-1.5 rounded-full bg-green-500"></span>
           New
         </span>
@@ -29,7 +29,7 @@ export default function Page() {
           href="https://core-seven-nu.vercel.app/cape"
           className="text-black font-medium transition-colors hover:text-neutral-600"
         >
-          Introducing CAPE: Breaking Through the Post-Training Scaling Wall
+          Introducing CAPE: Breaking Through the Post-Training Scaling Wall →
         </Link>
       </div>
     </section>

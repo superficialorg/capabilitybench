@@ -38,11 +38,11 @@ export default function Page() {
           .map((post) => (
             <Link
               key={post.slug}
-              className="flex flex-col space-y-1 mb-4"
+              className="flex flex-col space-y-1 mb-8"
               href={`/research/${post.slug}`}
             >
-              <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-                <p className="text-black w-[100px] tabular-nums">
+              <div className="w-full flex flex-col">
+                <p className="text-black tabular-nums whitespace-nowrap">
                   {formatDate(post.metadata.publishedAt, false)}
                 </p>
                 <p className="text-black tracking-tight font-medium">
