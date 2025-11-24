@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 function ArrowIcon() {
   return (
     <svg
@@ -47,8 +49,26 @@ export default function Footer() {
             href="mailto:contact@superficiallabs.com"
           >
             <ArrowIcon />
-            <p className="ml-2 h-7">contact</p>
+            <p className="ml-2 h-7">contact@superficiallabs.com</p>
           </a>
+        </li>
+        <li>
+          <Link
+            href="/terms"
+            className="flex items-center transition-all hover:text-neutral-800 text-black"
+          >
+            <ArrowIcon />
+            <p className="ml-2 h-7">Terms</p>
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/privacy"
+            className="flex items-center transition-all hover:text-neutral-800 text-black"
+          >
+            <ArrowIcon />
+            <p className="ml-2 h-7">Privacy</p>
+          </Link>
         </li>
       </ul>
       <p className="mt-8 text-black">
