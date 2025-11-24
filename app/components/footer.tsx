@@ -20,7 +20,7 @@ function ArrowIcon() {
 export default function Footer() {
   return (
     <footer className="mb-16">
-      <ul className="font-sm mt-16 flex flex-row space-x-4 text-black text-sm">
+      <ul className="font-sm mt-8 flex flex-row space-x-4 text-black text-sm">
         <li>
           <a
             className="flex items-center transition-all hover:text-neutral-800 text-black"
@@ -28,7 +28,9 @@ export default function Footer() {
             target="_blank"
             href="https://x.com/superficiallabs"
           >
-            <ArrowIcon />
+            <span className="flex items-center">
+              <ArrowIcon />
+            </span>
             <p className="ml-2 h-7">x</p>
           </a>
         </li>
@@ -39,7 +41,9 @@ export default function Footer() {
             target="_blank"
             href="https://github.com/superficiallabs"
           >
-            <ArrowIcon />
+            <span className="flex items-center">
+              <ArrowIcon />
+            </span>
             <p className="ml-2 h-7">github</p>
           </a>
         </li>
@@ -48,7 +52,9 @@ export default function Footer() {
             className="flex items-center transition-all hover:text-neutral-800 text-black"
             href="mailto:contact@superficiallabs.com"
           >
-            <ArrowIcon />
+            <span className="flex items-center">
+              <ArrowIcon />
+            </span>
             <p className="ml-2 h-7">contact@superficiallabs.com</p>
           </a>
         </li>
