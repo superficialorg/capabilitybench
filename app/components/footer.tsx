@@ -29,7 +29,7 @@ export default function Footer() {
             href="https://x.com/superficiallabs"
           >
             <ArrowIcon />
-            <p className="ml-2 h-7">X</p>
+            <p className="ml-2 h-7">x</p>
           </a>
         </li>
         <li>
@@ -40,7 +40,7 @@ export default function Footer() {
             href="https://github.com/superficiallabs"
           >
             <ArrowIcon />
-            <p className="ml-2 h-7">GitHub</p>
+            <p className="ml-2 h-7">github</p>
           </a>
         </li>
         <li>
