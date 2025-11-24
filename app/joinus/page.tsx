@@ -25,7 +25,7 @@ export default function Page() {
       <p className="mb-12">
         If you want to solve hard problems with real-world significance, and help shape the systems that will define the next era of AI, we'd love to meet you.
       </p>
-      <div>
+      <div className="mt-8">
         {joinusPosts
           .sort((a, b) => {
             if (

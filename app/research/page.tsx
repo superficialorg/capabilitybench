@@ -17,7 +17,7 @@ export default function Page() {
       <p className="mb-8">
         We believe AI accelerates human progress only when capability and reliability move forward together. Our research creates transparent, interpretable, and verifiable systems that make that possible.
       </p>
-      <div>
+      <div className="mt-8">
         {researchPosts
           .sort((a, b) => {
             if (
