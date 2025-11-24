@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function Page() {
   let allBlogs = getBlogPosts()
-  // Filter to show joinus posts, exclude CAPE post (vim)
+  // Filter to show joinus posts, exclude CAPE post
   let joinusPosts = allBlogs.filter((post) => 
     post.slug === 'post-training' || post.slug === 'cape-developer-experience'
   )

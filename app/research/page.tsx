@@ -8,8 +8,8 @@ export const metadata = {
 
 export default function Page() {
   let allBlogs = getBlogPosts()
-  // Filter to only show the CAPE post (vim)
-  let researchPosts = allBlogs.filter((post) => post.slug === 'vim')
+  // Filter to only show the CAPE post
+  let researchPosts = allBlogs.filter((post) => post.slug === 'cape')
 
   return (
     <section>

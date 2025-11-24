@@ -4,7 +4,7 @@ import { formatDate, getBlogPosts } from 'app/research/utils'
 import { baseUrl } from 'app/sitemap'
 
 export function generateMetadata() {
-  let post = getBlogPosts().find((post) => post.slug === 'vim')
+  let post = getBlogPosts().find((post) => post.slug === 'cape')
   if (!post) {
     return
   }
@@ -44,7 +44,7 @@ export function generateMetadata() {
 }
 
 export default function Cape() {
-  let post = getBlogPosts().find((post) => post.slug === 'vim')
+  let post = getBlogPosts().find((post) => post.slug === 'cape')
 
   if (!post) {
     notFound()
