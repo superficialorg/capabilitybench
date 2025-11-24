@@ -15,7 +15,7 @@ export default function Page() {
     <section>
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">Research</h1>
       <p className="mb-8">
-        We believe AI becomes transformative only when capability and reliability advance together. Our research focuses on making AI systems transparent, interpretable, and verifiable so they can meaningfully accelerate human progress.
+        We believe AI accelerates human progress only when capability and reliability move forward together. Our research creates transparent, interpretable, and verifiable systems that make that possible.
       </p>
       <div>
         {researchPosts

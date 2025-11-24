@@ -16,8 +16,14 @@ export default function Page() {
   return (
     <section>
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">Join us</h1>
+      <p className="mb-4">
+        Superficial Labs is an artificial intelligence research and product company. Our goal is to accelerate human progress by making AI capable and reliable enough for the world's most important work.
+      </p>
+      <p className="mb-4">
+        We're building the infrastructure that advances the frontier of what AI can achieve in real-world, high-stakes domains. Our work spans research, engineering, and product development — united by a belief that progress accelerates when intelligence becomes both more powerful and more dependable.
+      </p>
       <p className="mb-12">
-        Superficial Labs is an artificial intelligence research and product company. Our goal is to accelerate human progress by compounding AI capability and reliability in the world's most critical applications. We're building systems that push the frontier of what AI can do in high-impact domains. If you want to tackle hard problems with real-world significance, we'd love to meet you.
+        If you want to solve hard problems with real-world significance, and help shape the systems that will define the next era of AI, we'd love to meet you.
       </p>
       <div>
         {joinusPosts
