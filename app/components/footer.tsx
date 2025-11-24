@@ -52,27 +52,17 @@ export default function Footer() {
             <p className="ml-2 h-7">contact@superficiallabs.com</p>
           </a>
         </li>
-        <li>
-          <Link
-            href="/terms"
-            className="flex items-center transition-all hover:text-neutral-800 text-black"
-          >
-            <ArrowIcon />
-            <p className="ml-2 h-7">Terms</p>
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/privacy"
-            className="flex items-center transition-all hover:text-neutral-800 text-black"
-          >
-            <ArrowIcon />
-            <p className="ml-2 h-7">Privacy</p>
-          </Link>
-        </li>
       </ul>
-      <p className="mt-8 text-black">
+      <p className="mt-8 text-black flex items-center gap-4">
         © {new Date().getFullYear()} Superficial Company
+        <span className="flex items-center gap-4">
+          <Link href="/terms" className="transition-all hover:text-neutral-800 underline">
+            Terms
+          </Link>
+          <Link href="/privacy" className="transition-all hover:text-neutral-800 underline">
+            Privacy
+          </Link>
+        </span>
       </p>
     </footer>
   )
