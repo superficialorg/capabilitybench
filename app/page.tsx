@@ -14,11 +14,8 @@ export default function Page() {
           priority
         />
       </div>
-      <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-        Superficial
-      </h1>
       <p className="mb-4">
-        Superficial Labs is an artificial intelligence research and product company. We build infrastructure that accelerates AI adoption in humanity's most consequential applications.
+        Superficial Labs is an artificial intelligence research and product company. Our goal is to accelerate human progress by advancing AI capability and reliability.
       </p>
       <div className="mt-8 mb-4 flex items-center gap-2">
         <span className="flex items-center gap-1.5 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-200">
