@@ -15,7 +15,7 @@ export default function Page() {
         />
       </div>
       <p className="mb-4">
-        Superficial Labs is an artificial intelligence research and product company. Our goal is to accelerate human progress by advancing AI capability and reliability.
+        Superficial Labs is an artificial intelligence research and product company. Our goal is to accelerate human progress by compounding AI capability and reliability in the world's most critical applications.
       </p>
       <div className="mt-8 mb-4 flex items-center gap-2">
         <span className="flex items-center gap-1.5 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-200">

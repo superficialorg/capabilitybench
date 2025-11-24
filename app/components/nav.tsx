@@ -1,5 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { Inter } from 'next/font/google'
+
+const inter = Inter({ subsets: ['latin'] })
 
 const navItems = {
   '/': {
@@ -25,7 +28,7 @@ export function Navbar() {
           id="nav"
         >
           <div className="flex flex-row items-center space-x-0 pr-10">
-            <Link href="/" className="flex align-middle relative py-1 px-2 m-1">
+            <Link href="/" className="flex items-center gap-2 align-middle relative py-1 px-2 m-1">
               <Image
                 src="/superficial-icon.png"
                 alt="Superficial Labs"
@@ -33,6 +36,7 @@ export function Navbar() {
                 height={24}
                 className="h-6 w-6"
               />
+              <span className={inter.className}>Superficial</span>
             </Link>
             {Object.entries(navItems).map(([path, { name }]) => {
               return (
