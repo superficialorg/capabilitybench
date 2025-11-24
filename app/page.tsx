@@ -27,7 +27,7 @@ export default function Page() {
         </span>
         <Link
           href="https://core-seven-nu.vercel.app/cape"
-          className="text-black underline transition-colors hover:text-neutral-600"
+          className="text-black font-medium transition-colors hover:text-neutral-600"
         >
           Introducing CAPE: Breaking Through the Post-Training Scaling Wall
         </Link>
