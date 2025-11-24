@@ -18,11 +18,7 @@ export default function Page() {
         Superficial
       </h1>
       <p className="mb-4">
-        {`I'm a Vim enthusiast and tab advocate, finding unmatched efficiency in
-        Vim's keystroke commands and tabs' flexibility for personal viewing
-        preferences. This extends to my support for static typing, where its
-        early error detection ensures cleaner code, and my preference for dark
-        mode, which eases long coding sessions by reducing eye strain.`}
+        Superficial Labs is an artificial intelligence research and product company. We build infrastructure that accelerates AI adoption in humanity's most consequential applications.
       </p>
       <div className="mt-8 mb-4 flex items-center gap-2">
         <span className="flex items-center gap-1.5 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-200">
@@ -31,7 +27,7 @@ export default function Page() {
         </span>
         <Link
           href="https://core-seven-nu.vercel.app/cape"
-          className="text-neutral-900 underline transition-colors hover:text-neutral-600 dark:text-neutral-100 dark:hover:text-neutral-400"
+          className="text-black underline transition-colors hover:text-neutral-600"
         >
           Introducing CAPE: Breaking Through the Post-Training Scaling Wall
         </Link>
