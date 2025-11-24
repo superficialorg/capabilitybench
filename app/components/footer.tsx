@@ -40,7 +40,7 @@ export default function Footer() {
             href="https://github.com/superficiallabs"
           >
             <ArrowIcon />
-            <p className="ml-2 h-7">github</p>
+            <p className="ml-2 h-7">GitHub</p>
           </a>
         </li>
         <li>
@@ -53,13 +53,13 @@ export default function Footer() {
           </a>
         </li>
       </ul>
-      <p className="mt-8 text-black flex items-center gap-4">
+      <p className="mt-8 text-black flex items-center gap-4 text-sm">
         © {new Date().getFullYear()} Superficial Company
         <span className="flex items-center gap-4">
-          <Link href="/terms" className="transition-all hover:text-neutral-800 underline">
+          <Link href="/terms" className="transition-all hover:text-neutral-800">
             Terms
           </Link>
-          <Link href="/privacy" className="transition-all hover:text-neutral-800 underline">
+          <Link href="/privacy" className="transition-all hover:text-neutral-800">
             Privacy
           </Link>
         </span>
