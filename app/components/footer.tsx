@@ -23,7 +23,7 @@ export default function Footer() {
       <ul className="font-sm mt-8 flex flex-row space-x-4 text-black text-sm">
         <li>
           <a
-            className="flex items-end transition-all hover:text-neutral-800 text-black"
+            className="flex items-center transition-all hover:text-neutral-800 text-black"
             rel="noopener noreferrer"
             target="_blank"
             href="https://x.com/superficiallabs"
@@ -36,7 +36,7 @@ export default function Footer() {
         </li>
         <li>
           <a
-            className="flex items-end transition-all hover:text-neutral-800 text-black"
+            className="flex items-center transition-all hover:text-neutral-800 text-black"
             rel="noopener noreferrer"
             target="_blank"
             href="https://github.com/superficiallabs"
@@ -49,7 +49,7 @@ export default function Footer() {
         </li>
         <li>
           <a
-            className="flex items-end transition-all hover:text-neutral-800 text-black"
+            className="flex items-center transition-all hover:text-neutral-800 text-black"
             href="mailto:contact@superficiallabs.com"
           >
             <span className="flex items-center">
