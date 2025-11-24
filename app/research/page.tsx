@@ -14,6 +14,9 @@ export default function Page() {
   return (
     <section>
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">Research</h1>
+      <p className="mb-8">
+        We believe AI becomes transformative only when capability and reliability advance together. Our research focuses on making AI systems transparent, interpretable, and verifiable so they can meaningfully accelerate human progress.
+      </p>
       <div>
         {researchPosts
           .sort((a, b) => {
