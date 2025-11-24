@@ -26,14 +26,7 @@ export function Navbar() {
         >
           <div className="flex flex-row items-center space-x-0 pr-10 flex-nowrap overflow-x-auto">
             <Link href="/" className="flex items-center gap-2 align-middle relative py-1 px-2 m-1 mr-6">
-              <Image
-                src="/superficial-icon.png"
-                alt="Superficial Labs"
-                width={24}
-                height={24}
-                className="h-[18px] w-[18px]"
-              />
-              <span className={`${garamond.className} font-medium`}>Superficial</span>
+              <span className={`${garamond.className} font-semibold`}>Superficial</span>
             </Link>
             {Object.entries(navItems).map(([path, { name }]) => {
               return (
