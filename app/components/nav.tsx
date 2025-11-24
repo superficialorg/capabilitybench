@@ -5,9 +5,6 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 const navItems = {
-  '/': {
-    name: 'home',
-  },
   '/research': {
     name: 'research',
   },
@@ -36,7 +33,7 @@ export function Navbar() {
                 height={24}
                 className="h-6 w-6"
               />
-              <span className={inter.className}>Superficial</span>
+              <span className={`${inter.className} font-medium`}>Superficial</span>
             </Link>
             {Object.entries(navItems).map(([path, { name }]) => {
               return (
