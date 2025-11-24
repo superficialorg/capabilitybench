@@ -120,7 +120,7 @@ Key finding: DPO and outcome-based RL reduce violation rates initially but plate
 
 The violations that remain correlate with extractor failures (false negatives where structure is missed, false positives where structure is hallucinated) rather than model capacity or preference noise. When we swap a stronger extractor for an open-weight model, residual violations roughly double—confirming that extraction fidelity, not the approach itself, determines the floor.
 
-The computational overhead is modest: extraction adds 15-25% inference cost, policy evaluation is negligible (<1%). Total training time is comparable to DPO when accounting for the fact that CAPE continues improving while DPO plateaus.
+The computational overhead is modest: extraction adds 15-25% inference cost, policy evaluation is negligible (&lt;1%). Total training time is comparable to DPO when accounting for the fact that CAPE continues improving while DPO plateaus.
 
 ## Turning RLHF Data into Permanent Assets
 
