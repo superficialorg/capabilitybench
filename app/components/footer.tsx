@@ -23,39 +23,39 @@ export default function Footer() {
       <ul className="font-sm mt-8 flex flex-row space-x-4 text-black text-sm">
         <li>
           <a
-            className="flex items-center transition-all hover:text-neutral-800 text-black"
+            className="flex items-start transition-all hover:text-neutral-800 text-black"
             rel="noopener noreferrer"
             target="_blank"
             href="https://x.com/superficiallabs"
           >
-            <span className="flex items-center">
+            <span className="flex items-center mt-0.5">
               <ArrowIcon />
             </span>
-            <p className="ml-2 h-7">x</p>
+            <p className="ml-2 h-7 mt-1">twitter</p>
           </a>
         </li>
         <li>
           <a
-            className="flex items-center transition-all hover:text-neutral-800 text-black"
+            className="flex items-start transition-all hover:text-neutral-800 text-black"
             rel="noopener noreferrer"
             target="_blank"
             href="https://github.com/superficiallabs"
           >
-            <span className="flex items-center">
+            <span className="flex items-center mt-0.5">
               <ArrowIcon />
             </span>
-            <p className="ml-2 h-7">github</p>
+            <p className="ml-2 h-7 mt-1">github</p>
           </a>
         </li>
         <li>
           <a
-            className="flex items-center transition-all hover:text-neutral-800 text-black"
+            className="flex items-start transition-all hover:text-neutral-800 text-black"
             href="mailto:contact@superficiallabs.com"
           >
-            <span className="flex items-center">
+            <span className="flex items-center mt-0.5">
               <ArrowIcon />
             </span>
-            <p className="ml-2 h-7">contact@superficiallabs.com</p>
+            <p className="ml-2 h-7 mt-1">contact@superficiallabs.com</p>
           </a>
         </li>
       </ul>
