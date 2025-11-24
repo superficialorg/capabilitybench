@@ -10,6 +10,9 @@ const navItems = {
   '/cape': {
     name: 'CAPE',
   },
+  '/joinus': {
+    name: 'joinus',
+  },
 }
 
 export function Navbar() {

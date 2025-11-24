@@ -47,7 +47,7 @@ export default function Footer() {
             href="mailto:contact@superficiallabs.com"
           >
             <ArrowIcon />
-            <p className="ml-2 h-7">Contact</p>
+            <p className="ml-2 h-7">contact</p>
           </a>
         </li>
       </ul>
