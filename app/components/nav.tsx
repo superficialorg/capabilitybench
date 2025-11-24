@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import { EB_Garamond } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const garamond = EB_Garamond({ subsets: ['latin'] })
 
 const navItems = {
   '/research': {
@@ -33,7 +33,7 @@ export function Navbar() {
                 height={24}
                 className="h-[18px] w-[18px]"
               />
-              <span className={`${inter.className} font-medium`}>Superficial</span>
+              <span className={`${garamond.className} font-medium`}>Superficial</span>
             </Link>
             {Object.entries(navItems).map(([path, { name }]) => {
               return (
