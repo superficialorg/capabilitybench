@@ -48,7 +48,7 @@ html {
 }
 
 .prose a {
-  @apply underline transition-all decoration-neutral-400 underline-offset-2 decoration-[0.1em];
+  @apply transition-all;
 }
 
 .prose .anchor:after {
