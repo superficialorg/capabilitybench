@@ -1,8 +1,19 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Page() {
   return (
     <section>
+      <div className="mb-8">
+        <Image
+          src="/SF.jpg"
+          alt="Superficial"
+          width={800}
+          height={600}
+          className="w-full h-auto rounded-lg"
+          priority
+        />
+      </div>
       <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
         Superficial
       </h1>
@@ -13,7 +24,7 @@ export default function Page() {
         early error detection ensures cleaner code, and my preference for dark
         mode, which eases long coding sessions by reducing eye strain.`}
       </p>
-      <div className="mb-4 flex items-center gap-2">
+      <div className="mt-8 mb-4 flex items-center gap-2">
         <span className="flex items-center gap-1.5 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-200">
           <span className="h-1.5 w-1.5 rounded-full bg-green-500"></span>
           New

@@ -7,11 +7,11 @@ const navItems = {
   '/research': {
     name: 'research',
   },
+  '/joinus': {
+    name: 'join us',
+  },
   '/cape': {
     name: 'CAPE',
-  },
-  '/joinus': {
-    name: 'joinus',
   },
 }
 
