@@ -8,8 +8,10 @@ export const metadata = {
 
 export default function Page() {
   let allBlogs = getBlogPosts()
-  // Filter to only show the post-training post, exclude CAPE post (vim)
-  let joinusPosts = allBlogs.filter((post) => post.slug === 'post-training')
+  // Filter to show joinus posts, exclude CAPE post (vim)
+  let joinusPosts = allBlogs.filter((post) => 
+    post.slug === 'post-training' || post.slug === 'cape-developer-experience'
+  )
 
   return (
     <section>
