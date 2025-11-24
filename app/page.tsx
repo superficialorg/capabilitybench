@@ -6,7 +6,7 @@ export default function Page() {
     <section>
       <div className="mb-8">
         <Image
-          src="/SF2.png"
+          src="/SF.jpg"
           alt="Superficial"
           width={800}
           height={600}

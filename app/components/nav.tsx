@@ -33,7 +33,7 @@ export function Navbar() {
                 height={24}
                 className="h-[18px] w-[18px]"
               />
-              <span className={`${inter.className} font-bold`}>Superficial</span>
+              <span className={`${inter.className} font-medium`}>Superficial</span>
             </Link>
             {Object.entries(navItems).map(([path, { name }]) => {
               return (
