@@ -15,7 +15,7 @@ export default function Page() {
         />
       </div>
       <p className="mb-4">
-        Superficial Labs is an artificial intelligence research and product company.
+        Superficial is an artificial intelligence research and product company.
       </p>
       <p className="mb-4">
         Our goal is to accelerate human progress by making AI capable and reliable enough for the world's most important work.
