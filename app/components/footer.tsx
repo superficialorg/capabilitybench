@@ -11,8 +11,7 @@ export default function Footer() {
             target="_blank"
             href="https://x.com/superficiallabs"
           >
-            <p className="h-7">twitter</p>
-            <span className="ml-1">→</span>
+            <p className="h-7">Twitter</p>
           </a>
         </li>
         <li>
@@ -22,8 +21,7 @@ export default function Footer() {
             target="_blank"
             href="https://github.com/superficiallabs"
           >
-            <p className="h-7">github</p>
-            <span className="ml-1">→</span>
+            <p className="h-7">GitHub</p>
           </a>
         </li>
         <li>
@@ -31,14 +29,35 @@ export default function Footer() {
             className="flex items-center transition-all hover:text-neutral-800 text-black"
             href="mailto:contact@superficiallabs.com"
           >
-            <p className="h-7">contact@superficiallabs.com</p>
-            <span className="ml-1">→</span>
+            <p className="h-7">Contact</p>
           </a>
         </li>
       </ul>
       <p className="mt-8 text-black flex items-center gap-4 text-sm">
         © {new Date().getFullYear()} Superficial Company
         <span className="flex items-center gap-4">
+          <a
+            href="https://x.com/superficiallabs"
+            className="transition-all hover:text-neutral-800"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Twitter
+          </a>
+          <a
+            href="https://github.com/superficiallabs"
+            className="transition-all hover:text-neutral-800"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            GitHub
+          </a>
+          <a
+            href="mailto:contact@superficiallabs.com"
+            className="transition-all hover:text-neutral-800"
+          >
+            Contact
+          </a>
           <Link href="/terms" className="transition-all hover:text-neutral-800">
             Terms
           </Link>
