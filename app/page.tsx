@@ -4,7 +4,7 @@ import Image from 'next/image'
 export default function Page() {
   return (
     <section>
-      <div className="mb-8">
+      <div className="mb-12">
         <Image
           src="/SF3.png"
           alt="Superficial"
