@@ -25,7 +25,7 @@ export function Navbar() {
           id="nav"
         >
           <Link href="/" className="flex items-center align-middle relative py-1 pl-0">
-            <span className={`${inter.className} font-semibold text-xl`}>—Superficial</span>
+            <span className={`${inter.className} font-semibold text-xl`}>— Superficial</span>
           </Link>
           <div className="flex flex-row items-center space-x-0 flex-nowrap overflow-x-auto">
             {Object.entries(navItems).map(([path, { name }]) => {
