@@ -43,7 +43,7 @@ export default function Page() {
               href={`/research/${post.slug}`}
             >
               <div className="w-full flex flex-col">
-                <p className="text-black tabular-nums whitespace-nowrap">
+                <p className="text-black tabular-nums whitespace-nowrap text-sm">
                   {formatDate(post.metadata.publishedAt, false)}
                 </p>
                 <p className="text-black tracking-tight font-medium">

@@ -35,7 +35,7 @@ export default function Page() {
             >
               <div className="w-full flex flex-col">
                 <div className="flex items-center gap-2 mb-1">
-                  <p className="text-black tabular-nums whitespace-nowrap">
+                  <p className="text-black tabular-nums whitespace-nowrap text-sm">
                     {formatDate(post.metadata.publishedAt, false)}
                   </p>
                   {post.slug === 'cape' && (
