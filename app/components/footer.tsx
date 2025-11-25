@@ -1,25 +1,5 @@
 import Link from 'next/link'
 
-function ArrowIcon() {
-  return (
-    <svg
-      width="12"
-      height="12"
-      viewBox="0 0 12 12"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M2 6h8M6 2l4 4-4 4"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
 export default function Footer() {
   return (
     <footer className="mb-16">
@@ -31,10 +11,8 @@ export default function Footer() {
             target="_blank"
             href="https://x.com/superficiallabs"
           >
-            <span className="flex items-center">
-              <ArrowIcon />
-            </span>
-            <p className="ml-2 h-7">twitter</p>
+            <p className="h-7">twitter</p>
+            <span className="ml-1">→</span>
           </a>
         </li>
         <li>
@@ -44,10 +22,8 @@ export default function Footer() {
             target="_blank"
             href="https://github.com/superficiallabs"
           >
-            <span className="flex items-center">
-              <ArrowIcon />
-            </span>
-            <p className="ml-2 h-7">github</p>
+            <p className="h-7">github</p>
+            <span className="ml-1">→</span>
           </a>
         </li>
         <li>
@@ -55,10 +31,8 @@ export default function Footer() {
             className="flex items-center transition-all hover:text-neutral-800 text-black"
             href="mailto:contact@superficiallabs.com"
           >
-            <span className="flex items-center">
-              <ArrowIcon />
-            </span>
-            <p className="ml-2 h-7">contact@superficiallabs.com</p>
+            <p className="h-7">contact@superficiallabs.com</p>
+            <span className="ml-1">→</span>
           </a>
         </li>
       </ul>
