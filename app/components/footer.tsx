@@ -3,9 +3,8 @@ import Link from 'next/link'
 export default function Footer() {
   return (
     <footer className="mb-16">
-      <p className="mt-8 text-black flex items-center gap-4 text-sm flex-wrap">
-        <span className="whitespace-nowrap">© {new Date().getFullYear()} Superficial Company</span>
-        <span className="flex items-center gap-4">
+      <div className="mt-8 text-black text-sm">
+        <div className="flex items-center gap-4 flex-wrap">
           <a
             href="https://x.com/superficiallabs"
             className="transition-all hover:text-neutral-800"
@@ -34,8 +33,9 @@ export default function Footer() {
           <Link href="/privacy" className="transition-all hover:text-neutral-800">
             Privacy
           </Link>
-        </span>
-      </p>
+        </div>
+        <p className="mt-4">© {new Date().getFullYear()} Superficial Company</p>
+      </div>
     </footer>
   )
 }
