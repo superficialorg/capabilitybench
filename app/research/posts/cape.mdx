@@ -4,89 +4,149 @@ publishedAt: '2025-11-24'
 summary: 'An open-source framework that replaces expensive preference annotation with LLM-assisted policy authoring, making post-training transparent, auditable, and accessible.'
 ---
 
-At Superficial Labs, our goal is to accelerate human progress by making AI capable and reliable enough for the world's most important work. Over the past several years, the field has made enormous strides in pre-training and instruction-tuning, but one stage of the pipeline has become a persistent bottleneck: post-training. As models improve, the traditional methods used to refine their behaviour struggle to keep pace.
+Our goal is to accelerate human progress by making AI capable and reliable enough for the world's most important work.
 
-Today we are introducing CAPE (Capability Achievement via Policy Enforcement), an open-source, neurosymbolic post-training framework designed to address this problem directly. CAPE provides a more explicit, auditable, and scalable way to shape model behaviour by enforcing capability policies rather than relying on preference comparisons.
+Over the last several years, pre-training and instruction tuning have continued to improve at remarkable speed. But one stage of the pipeline increasingly lags behind: post-training, the process responsible for shaping model behaviour into something safe, correct, compliant, and usable.
 
-## The post-training scaling wall
+Today we're releasing CAPE (Capability Achievement via Policy Enforcement), a transparent and scalable post-training framework that replaces preference-based supervision with explicit, executable capability policies. CAPE restores a deterministic supervision signal to post-training, allowing capability and reliability to scale together even as models become more powerful.
 
-Preference-based post-training methods such as RLHF and DPO assume that humans (or models) can reliably decide which of two model outputs is "better." This assumption held when models were relatively weak. As models became more consistent and generally correct, these comparative judgments became ambiguous, and annotator disagreement rose sharply.
+CAPE-Core — the open-source reference implementation — accompanies this release and is available for researchers and practitioners to test, extend, and adopt.
 
-This rising uncertainty has a practical consequence: the supervision signal becomes noisy enough that improvements in model capacity no longer translate into corresponding improvements in aligned behaviour. Several labs have observed the same pattern on structured, evaluable tasks such as arithmetic, code generation, tool use, and citation-grounded QA.
+## The Post-Training Scaling Wall
 
-This plateau is now a central limitation for models intended for scientific, medical, financial, or other safety-critical domains where correctness and auditability matter.
+Modern post-training relies heavily on reinforcement learning from human feedback (RLHF) and Direct Preference Optimization (DPO): given two model outputs, a human or model judge selects the preferred one, and the model learns to imitate that preference.
 
-## CAPE: policies instead of preferences
+As models improve, this process breaks down.
 
-CAPE reframes the question from "Which output is better?" to "Does the output satisfy the required conditions?"
+When most outputs are "good" in an absolute sense, annotators disagree more frequently about which output is better. Under standard preference models, the useful signal scales like 1 – 2δ, where δ is the disagreement rate. As δ approaches 50%, the gradient vanishes. Additional compute does not translate into proportional improvement.
 
-To do this, CAPE introduces a closed-loop neurosymbolic post-training process:
+This is not an annotation problem — it is a structural one. Preference-based supervision is non-deterministic, and non-deterministic gradients do not compound as models improve.
+
+Pre-training scales so well because its supervision signal — next-token prediction — is deterministic. Every example produces a well-defined gradient. Post-training today does not enjoy that property.
+
+As a result, RLHF and DPO have reached a post-training scaling wall, especially on structured, evaluable tasks such as arithmetic with tool calls, code safety, and citation-grounded QA. Models could improve, but the supervision signal can't scale with them.
+
+## CAPE: Policies Instead of Preferences
+
+CAPE reframes the core task of post-training:
+
+* Traditional methods ask: Which of these two outputs is better?
+
+* CAPE asks: Does this output satisfy our requirements?
+
+CAPE introduces a closed-loop, neurosymbolic post-training pipeline:
 
 1. **Extraction**
 
-Model outputs are converted into a structured, versioned representation called a PredicateGraph, capturing entities, claims, reasoning steps, tool-use structure, citations, safety markers, and discourse acts.
+An LLM maps the model's output into a structured, versioned PredicateGraph.
 
-2. **Policy evaluation**
+This graph captures entities, claims, reasoning steps, arithmetic and logical operations, tool calls, discourse acts, safety markers, citations, and stylistic structure.
 
-Domain requirements are expressed as executable capability policies — deterministic checks over the PredicateGraph describing what must hold for the output to be considered correct, safe, or structurally compliant.
+2. **Policy Evaluation**
 
-3. **Correction**
+Domain requirements are expressed as executable capability policies.
 
-When a policy is violated, CAPE applies minimal deterministic fixes or constrained rewrites.
+Policies operate over the PredicateGraph, evaluating whether correctness, safety, compliance, and structural constraints are satisfied.
+
+3. **Deterministic Correction**
+
+If a policy is violated, CAPE applies minimal deterministic fixes or constrained rewrites to produce a corrected output.
 
 4. **Learning**
 
-The model trains directly on corrected outputs, gradually internalising the policies and reducing violations over time.
+The corrected output becomes a clean, unambiguous training target.
 
-Because the supervision signal is defined explicitly by policies rather than implicitly by human comparisons, its quality scales with extractor fidelity — an engineering variable that can improve with better models, synthetic data, ensembles, and domain-specific refinement.
+This loop — extraction → evaluation → correction → learning — restores a deterministic supervision regime to post-training. As long as a capability can be expressed as executable predicates over a graph, CAPE can train a model to achieve it.
 
-## Empirical results
+## Why CAPE Is Feasible Today
 
-We applied CAPE across three domains: arithmetic with tool calls, safe Python code generation, and citation-grounded question answering. In all cases, preference-based methods reduce violation rates early in training but plateau between 10–20%.
+Two years ago, predicate extraction was too unreliable for this approach to work. Today, advances in frontier LLMs have changed the landscape:
 
-CAPE continues improving beyond these plateaus, converging instead to extractor-limited floors (typically 2–8%). Importantly, the remaining violations correspond to extraction errors rather than model capacity limits.
+* High-fidelity structured extraction across text, code, math, and citations
 
-This pattern suggests that CAPE restores predictable scaling to post-training, even as models become more capable.
+* Stable, schema-conforming generation
 
-## Complementarity with preference learning
+* Accurate mapping of discourse and safety markers
 
-While CAPE provides a deterministic and auditable foundation for correctness, safety, governance, and structural requirements, preference learning remains valuable for subjective qualities such as tone, phrasing, and stylistic preferences.
+* Stronger generalization across domains
 
-We therefore recommend a two-phase approach:
+* LLMs capable of drafting executable policies with minimal human editing
 
-1. CAPE for structural, correctness, and safety constraints
+These capabilities have crossed the threshold required for predicate-graph-based enforcement to outperform preference-based supervision on many structured tasks.
 
-2. Preference learning for subjective quality within those constraints
+## Empirical Results
 
-This layering preserves the strengths of both methods and yields models better suited for high-stakes applications.
+We apply CAPE to three structured domains:
 
-## What we're releasing
+* arithmetic with tool calls
 
-Today we are releasing CAPE-Core, an open-source implementation that includes:
+* safe Python code generation
 
-* the PredicateGraph schema (versioned and extensible)
+* citation-constrained QA
 
-* reference extractors for arithmetic, code, and QA
+Across all domains, preference-based methods (DPO, outcome-based RL) reduce violations early but plateau between 10–20%. CAPE continues improving beyond these plateaus.
 
-* a deterministic policy engine with semantic routing
+Violation rates under CAPE follow an approximate power-law decay until reaching extractor-limited floors of 2–8%, depending on extractor quality. The remaining violations correspond closely to extraction errors, not model limitations.
 
-* LLM-assisted policy authoring tools
+This matches the central theory: when supervision is deterministic, improvement compounds until the extraction floor is reached. When supervision is non-deterministic, gradients collapse far earlier.
 
-* a correction engine supporting literal fixes, templates, and constrained rewrites
+## How CAPE Restores Post-Training Scaling
 
-* starter policy packs for common domains
+CAPE's core advantage is that the supervision signal is bounded by extraction fidelity (ε) rather than human disagreement (δ).
 
-* an evaluation harness for measuring violation rates and extractor performance
+When ε < δ — which is now true for many structured tasks — CAPE provides a strictly stronger, more scalable signal than RLHF or DPO.
 
-* documentation for domain experts, not only ML practitioners
+This is the main conceptual contribution:
 
-CAPE-Core is available under a permissive license to support research, enterprise integration, and collaborative policy development.
+CAPE turns post-training into a deterministic, machine-speed, high-bandwidth training loop.
 
-## Looking ahead
+## CAPE + Preference Learning
 
-For AI to meaningfully advance the world's most important work, capability and reliability must progress together. CAPE offers a way to make post-training more transparent, maintainable, and fundamentally scalable — traits that become increasingly necessary as models are deployed in regulated, safety-critical, and professional settings.
+CAPE is not a replacement for preference learning.
 
-We invite researchers, practitioners, and domain experts to explore CAPE, contribute new policies and extractors, and help build a foundation for more reliable AI systems.
+Instead, CAPE provides the necessary structural, correctness, and safety guarantees, while preference learning provides subjective refinement.
+
+We recommend a two-phase hybrid:
+
+1. CAPE for correctness, safety, governance, and structural scaffolding
+
+2. Preference learning for style, tone, empathy, and domain-specific nuance
+
+CAPE establishes the floor. Preferences lift the ceiling.
+
+## What We're Releasing
+
+Today we are releasing CAPE-Core, an open-source reference implementation that includes:
+
+* The PredicateGraph schema (versioned and extensible)
+
+* Reference extractors for arithmetic, code, and QA
+
+* A deterministic policy engine with semantic routing
+
+* LLM-assisted policy authoring tools and templates
+
+* A correction engine supporting literal edits, templates, and constrained rewrites
+
+* Starter policy packs
+
+* An evaluation harness for measuring violation rates and extractor performance
+
+* Documentation designed for domain experts as well as ML practitioners
+
+CAPE-Core aims to provide a foundation for a growing policy ecosystem:
+
+shared policy packs, improved extractors, richer ontologies, and best practices for policy authoring.
+
+## Outlook
+
+For AI to contribute meaningfully to the world's most important work, capability and reliability must advance together. CAPE operationalises this vision by giving post-training a deterministic, transparent, and maintainable foundation.
+
+Even if CAPE ultimately applies "only" to structured and evaluable capabilities, that subset includes precisely the tasks where correctness, safety, and auditability matter most. For those domains, CAPE provides a path to continue improving model behaviour long after preference-based methods reach their limits.
+
+We invite researchers, enterprises, and domain experts to explore CAPE and help expand the policy ecosystem.
+
+## Get Involved
 
 Read the paper → /mnt/data/CAPE.pdf
 
