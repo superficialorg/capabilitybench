@@ -19,16 +19,13 @@ export default function Cape() {
           We work with frontier labs and enterprises to deploy CAPE at scale, providing optimized extractors, rapid policy authoring, and expertise in translating your requirements into verifiable specifications.
         </p>
         <p>
-          Most organizations begin their first verification loop within weeks, not months.
-        </p>
-        <p>
           <Link href="mailto:contact@superficiallabs.com">Book a call →</Link>
         </p>
         <p>
-          <Link href="/research/cape">Read technical paper →</Link>
+          <Link href="/research/cape">Read CAPE technical paper →</Link>
         </p>
         <p>
-          <Link href="/research/cape">Read release blog →</Link>
+          <Link href="/research/cape">Read CAPE release blog →</Link>
         </p>
       </article>
     </section>
