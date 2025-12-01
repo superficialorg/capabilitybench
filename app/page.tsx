@@ -26,7 +26,7 @@ export default function Page() {
           href="/research/cape"
           className="text-black font-medium transition-colors hover:text-neutral-600"
         >
-          Introducing CAPE: Breaking Through the Post-Training Scaling Wall →
+          Introducing CAPE: Breaking the Post-Training Plateau with Executable Verification →
         </Link>
       </div>
     </section>
