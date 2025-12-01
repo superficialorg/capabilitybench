@@ -15,7 +15,7 @@ export default function Page() {
         />
       </div>
       <p className="mb-4">
-        Superficial is an artificial intelligence infrastructure company. Our goal is to accelerate human progress by making AI capable and reliable enough for the world's most important work.
+        Superficial is an artificial intelligence research company. Our goal is to accelerate human progress by making AI capable and reliable enough for the world's most important work.
       </p>
       <div className="mt-12 mb-4 flex flex-col gap-2">
         <span className="flex items-center gap-1.5 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-200 w-fit">
