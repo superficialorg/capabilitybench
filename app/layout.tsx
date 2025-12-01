@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   description: 'This is my portfolio.',
   icons: {
-    icon: '/Favicon.png',
+    icon: '/Favicon1.png',
   },
   openGraph: {
     title: 'Superficial',
