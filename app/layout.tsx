@@ -18,11 +18,11 @@ export const metadata: Metadata = {
   description: 'This is my portfolio.',
   icons: {
     icon: [
-      { url: '/Favicon1.png' },
-      { url: '/Favicon1.png', type: 'image/png' },
+      { url: '/Favicon2.png' },
+      { url: '/Favicon2.png', type: 'image/png' },
     ],
-    shortcut: '/Favicon1.png',
-    apple: '/Favicon1.png',
+    shortcut: '/Favicon2.png',
+    apple: '/Favicon2.png',
   },
   openGraph: {
     title: 'Superficial',
