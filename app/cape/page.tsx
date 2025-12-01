@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'CAPE: Verifiable Post-Training for Enterprise AI',
+  title: 'CAPE: A New Paradigm for Post-Training',
   description: 'CAPE is a post-training protocol that replaces expensive, noisy preference labeling with executable verification.',
 }
 
@@ -9,7 +9,7 @@ export default function Cape() {
   return (
     <section>
       <h1 className="title font-semibold text-2xl tracking-tighter mb-8">
-        CAPE: Verifiable Post-Training for Enterprise AI
+        CAPE: A New Paradigm for Post-Training
       </h1>
       <article className="prose">
         <p>

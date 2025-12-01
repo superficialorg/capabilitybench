@@ -25,7 +25,7 @@ export function Navbar() {
           id="nav"
         >
           <Link href="/" className="flex items-center align-middle relative py-1 pl-0 gap-2">
-            <Image src="/Logo1.png" alt="Superficial Logo" width={20} height={20} />
+            <Image src="/Logo1.png" alt="Superficial Logo" width={30} height={30} />
             <span className={`${inter.className} font-semibold text-lg`}>Superficial</span>
           </Link>
           <div className="flex flex-row items-center space-x-0 flex-nowrap overflow-x-auto">
