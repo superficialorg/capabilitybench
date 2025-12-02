@@ -17,13 +17,13 @@ export default function Privacy() {
       <article className="prose">
         <h2>1. Introduction</h2>
         <p>
-          Superficial Labs Pty Ltd ("Superficial Labs", "Company", "we", or "us") is an artificial intelligence research and product company.
+          Superficial Labs, Inc. ("Superficial Labs", "Company", "we", or "us") is an artificial intelligence research and product company.
         </p>
         <p>
           This Privacy Notice ("Notice") explains how we collect, use, and disclose your information when you access or use our website, applications, or services, or otherwise interact with us (collectively, the "Services").
         </p>
         <p>
-          For the purposes of this Notice, Superficial Labs Pty Ltd is the data controller of your information.
+          For the purposes of this Notice, Superficial Labs, Inc. is the data controller of your information.
         </p>
         <p>
           By using our Services, you agree to the practices described in this Notice. If you do not understand or agree with this Privacy Notice, please do not use our Services.
@@ -286,6 +286,7 @@ export default function Privacy() {
     </section>
   )
 }
+
 
 
 

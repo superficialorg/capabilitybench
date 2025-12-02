@@ -34,7 +34,7 @@ export default function Footer() {
             Privacy
           </Link>
         </div>
-        <p className="mt-4">© {new Date().getFullYear()} Superficial Company</p>
+        <p className="mt-4">© {new Date().getFullYear()} Superficial Labs</p>
       </div>
     </footer>
   )

@@ -16,7 +16,7 @@ export default function Terms() {
       </div>
       <article className="prose">
         <p>
-          Welcome to the Terms of Service (these <strong>"Terms"</strong>) for the website <strong>superficiallabs.com</strong> (the <strong>"Website"</strong>), operated by <strong>Superficial Labs Pty Ltd</strong> (<strong>"Superficial Labs", "Company", "we", "our", or "us"</strong>).
+          Welcome to the Terms of Service (these <strong>"Terms"</strong>) for the website <strong>superficiallabs.com</strong> (the <strong>"Website"</strong>), operated by <strong>Superficial Labs, Inc.</strong> (<strong>"Superficial Labs", "Company", "we", "our", or "us"</strong>).
         </p>
         <p>
           The Website, along with any content, tools, features, or functionality offered through it, are collectively referred to as the <strong>"Services"</strong>.
@@ -227,6 +227,7 @@ export default function Terms() {
     </section>
   )
 }
+
 
 
 
