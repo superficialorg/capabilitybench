@@ -26,7 +26,7 @@ export default function Page() {
           href="/research/cape"
           className="text-black font-medium transition-colors hover:text-neutral-600"
         >
-          Introducing CAPE: A New Paradigm for Post-Training →
+          Introducing CAPE: Capability Engineering for AI →
         </Link>
       </div>
     </section>

@@ -1,93 +1,194 @@
 ---
-title: 'Introducing CAPE: A New Paradigm for Post-Training'
+title: 'Introducing CAPE: Capability Engineering for AI'
 publishedAt: '2025-12-01'
-summary: 'A post-training protocol that replaces preference collection with executable verification, reducing violation rates by 74% relative to DPO and cutting costs by 20–200×.'
+summary: 'A systematic practice for making models capable of what users and organisations actually need, reducing violation rates by 81% relative to DPO and cutting costs by 20–200×.'
 ---
 
-[Read the full paper →](https://arxiv.org/abs/XXXX.XXXXX) &nbsp; [GitHub →](https://github.com/superficiallabs/cape)
+# Introducing CAPE: Capability Engineering for AI
 
-Post-training has reached an impasse. Methods like RLHF and DPO depend on human preferences, but human annotators disagree on 30–50% of subtle judgments. This disagreement creates a noise floor that no amount of compute can overcome. Budgets run to six figures per capability area. Timelines stretch to months. And models still hallucinate facts, skip safety checks, and produce flawed reasoning in production.
+[Read the full paper →](https://arxiv.org/abs/XXXX.XXXXX) | [GitHub →](https://github.com/superficiallabs/cape)
 
-We believe the path forward requires a different foundation. Today we release CAPE (Capability Achievement via Policy Execution), a post-training protocol that replaces preference collection with executable verification. 
+---
 
-Our core insight: most capabilities that matter are not matters of taste. Correctness, safety, and valid reasoning are inherently objective. Even properties that seem subjective - "good customer service," "clear explanation" - become objective once context is fixed. "Acknowledge the issue before offering solutions; offer escalation when unresolved" is not a preference. It is a testable requirement. We call this contextual objectivity: the recognition that organizational and domain context renders most apparently subjective properties into verifiable specifications.
+## The Deployment Gap
 
-We are open-sourcing the core framework under Apache 2.0: the PredicateGraph schema, the CAPE Policy Language specification, and example policy packs for arithmetic, code safety, and citation grounding. Everything is available at github.com/superficiallabs/cape, with complete technical details in the accompanying paper.
+A model that wins mathematical olympiads cannot reliably follow a hospital formulary. A model that writes publishable code cannot guarantee it will cite only the documents you provide. A model that passes the bar exam cannot enforce your firm's jurisdiction constraints.
 
-## The Problem: Preferences Hit a Ceiling
+This is the deployment gap: the chasm between what models can do in principle and what they can be trusted to do in practice. We have spent the last three years scaling intelligence. We have not scaled capability.
 
-In software engineering, requirements are executable. When code fails a test, you know exactly what broke. When you fix it, you prove it's fixed. The feedback loop is tight and deterministic.
+**Intelligence** is the ability to solve complex, open-ended problems. **Capability** is the reliable application of intelligence to specific requirements. A model can be extraordinarily intelligent and yet lack the capabilities that deployment demands. Intelligence is necessary but insufficient. Capability must be engineered.
 
-Language models have no equivalent. "Be helpful" is an aspiration, not a specification. When a model fails, there is no trace to a specific requirement. When annotators label outputs, they disagree with each other as often as they agree on difficult cases. Training on this signal means training on noise.
+Today we release CAPE (Capability Achievement via Policy Execution) and introduce **Capability Engineering**: a systematic practice for making models capable of what users and organisations actually need.
 
-The consequences appear everywhere. Agents make wrong API calls and cannot recover. Mathematical proofs reach correct answers through invalid steps. Generated code passes tests while harboring security vulnerabilities. The common thread: outcome-based rewards provide no signal about process correctness. And when you scale compute against noisy signal, you amplify the noise.
+---
 
-## The Solution: Verification as Training Signal
+## Why Preference-Based Training Has Stalled
 
-CAPE operates on a simple principle: if you can verify a property, you can train for it directly. The protocol forms a closed loop—Specify, Verify, Correct, Train—where every failure generates structured signal and every correction strengthens the system.
+Post-training methods like RLHF optimise for intelligence. They ask annotators: "Which response is better?" But annotators disagree 30–50% of the time on subtle judgments. This isn't fixable with better guidelines or more training—it reflects genuine variance in human judgment when requirements are underspecified.
 
-Specify. Requirements become executable. For structural properties like format compliance, arithmetic accuracy, and citation presence we introduce the CAPE Policy Language (CPL), a deterministic specification language. For semantic properties that require reasoning like proof validity and plan feasibility we use learned verifiers trained on explicit rubrics rather than implicit preferences.
+The consequences compound:
 
-Verify. Model outputs are parsed into a structured representation (the PredicateGraph), then evaluated against specifications. Symbolic policies execute deterministically with zero variance. Learned verifiers output scores alongside identified issues. Both produce actionable diagnostics: not just "this failed," but "argument 7.1 does not match computed result 7.095."
+- **More compute amplifies noise.** Training harder against disagreeing annotators doesn't converge; it overfits to inconsistency.
 
-Correct. Violations trigger deterministic patches where possible, constrained rewrites otherwise. Every correction is re-verified before acceptance.
+- **Costs are prohibitive.** Preference annotation runs $50K–200K per capability area with timelines stretching to months.
 
-Train. The corrected outputs become supervised training signal. No preference labels required.
+- **The ceiling is fixed.** No amount of investment overcomes the preference plateau. Returns diminish while costs scale.
 
-This loop compounds. Better models improve extraction fidelity, which enables stricter specifications, which generate cleaner corrections, which produce stronger models. Unlike preference learning, where additional compute amplifies annotator disagreement, CAPE's ceiling is technical, and technical ceilings fall with scale.
+We don't need more intelligent models. We need more capable ones. And capability requires a different foundation.
 
-## What Makes a Property Verifiable
+---
 
-A common objection with symbolic systems is that explicit verification only works for narrow, objective tasks. Everything important is too subjective for specification.
+## The Core Insight: Contextual Objectivity
 
-This conflates two distinctions. 
+A common objection: "You can't write specifications for the things that matter. Real requirements are too subjective."
 
-Structural versus semantic: can the property be checked by pattern-matching, or does it require understanding meaning? 
+This is wrong. It confuses *abstract* with *subjective*.
 
-Objective versus subjective: is there a fact of the matter, or does it depend on individual taste?
+"Good medical advice" is abstract—it means different things to different people. But "recommend only drugs from this formulary, flag contraindications from the patient record, verify dosages against weight-based limits" is objective. There is a fact of the matter. It can be verified.
 
-But semantic does not imply subjective. "The proof step is logically valid" requires understanding (semantic) but has a definite answer (objective). "This explanation is elegant" depends on preference (subjective). The former is verifiable; the latter is not.
+We call this **contextual objectivity**: the recognition that properties appearing subjective become objective once context is fixed. What seems like a matter of taste in the abstract becomes a testable requirement when you specify: good according to whom, for what purpose, under what constraints.
 
-Most capabilities that matter in deployment such as correctness, safety, reasoning validity, plan feasibility are objective. Many properties that seem subjective become objective once context is fixed. "Good customer service" is vague in the abstract. "Acknowledge the issue before offering solutions; offer escalation when unresolved" is testable. We call this contextual objectivity: the recognition that organizational requirements render most "subjective" properties into verifiable specifications.
+Our inter-annotator studies confirm this empirically:
 
-CAPE handles both structural properties (via symbolic CPL policies) and semantic properties (via learned verifiers with explicit rubrics). Only genuinely subjective properties like aesthetic quality and creative excellence require preference learning (and even in some contexts these too can be expressed as policies).
+| Condition | Agreement |
+|-----------|-----------|
+| Abstract ("Is this good medical advice?") | 63% |
+| Contextualised ("Formulary only, flag contraindications") | 85% |
+| Explicit Policy (executable specification) | 99% |
+
+The disagreement wasn't about values. It was about underspecified requirements. Fix the context, and agreement follows.
+
+This is the unlock: **most capability requirements that matter in production are contextually objective.** They're not matters of taste—they're matters of specification. And what can be specified can be verified. What can be verified can be trained.
+
+---
+
+## How CAPE Works
+
+CAPE implements a closed loop: **Specify → Verify → Correct → Train.**
+
+**Specify.** Requirements become executable. For structural properties (format compliance, citation presence, formulary membership), we use the CAPE Policy Language (CPL)—a deterministic specification language. For semantic properties requiring judgment (reasoning validity, plan feasibility), we use learned verifiers trained on explicit rubrics.
+
+**Verify.** Model outputs are parsed into a structured representation (the PredicateGraph) and evaluated against specifications. Symbolic policies execute deterministically: same output, same verdict, every time. Learned verifiers output scores with identified issues. Both produce actionable diagnostics—not just "this failed" but "argument 7.1 does not match computed result 7.095."
+
+**Correct.** Violations trigger targeted fixes. Deterministic patches where possible, constrained rewrites otherwise. Every correction is re-verified before acceptance.
+
+**Train.** Corrected outputs become supervised training signal. No preference labels required.
+
+This is capability engineering: the same discipline that governs traditional software—explicit requirements, verifiable correctness, traceable failures, validated fixes—applied to model behaviour.
+
+---
+
+## The Loop Compounds
+
+Here's what changes everything: **CAPE's gains compound.**
+
+Better models improve extraction fidelity. Better extraction enables stricter specifications. Stricter specifications generate cleaner corrections. Cleaner corrections produce more capable models. The cycle continues.
+
+Preference-based methods face the opposite dynamic. Annotator disagreement is fixed at 30–50% regardless of model capability. More compute yields diminishing returns. You hit the ceiling and stop.
+
+With CAPE, the ceiling is technical—extraction accuracy, verifier fidelity—and technical ceilings fall with scale. We measure this directly: violation rate correlates with extraction error at r=0.94. As extraction improves (which it does with each model generation), violation rates fall proportionally.
+
+**Compute investment yields guaranteed returns again.** This is the scaling law that preference-based training lost.
+
+---
+
+## What This Unlocks
+
+### Post-training for everyone
+
+Preference annotation costs $50K–200K per capability area. CAPE costs ~$500. Timelines drop from months to weeks.
+
+This isn't marginal improvement—it's a category shift. Capability-specific post-training is no longer reserved for frontier labs with annotation budgets. Any organisation with clear requirements can now train models to satisfy them.
+
+| | RLHF/DPO | CAPE |
+|-------|----------|------|
+| Specification | 1–2 weeks | 1–3 days |
+| Data | $20K–50K | $200 |
+| Training | 1–2 weeks | 1–3 days |
+| **Total** | **$50K–200K** | **~$500** |
+| **Timeline** | **3–6 months** | **1–2 weeks** |
+
+### Engineering, not alchemy
+
+Traditional software has specifications, test suites, and traceable fixes. When code fails, you know what broke. When you fix it, you prove it's fixed.
+
+Language models have had benchmarks, preferences, and hope.
+
+CAPE brings engineering discipline to model behaviour. Policies are explicit artifacts—auditable, versionable, shareable. When a model fails in production, you can trace the failure to a specific policy. When you improve the model, you can prove the improvement against the same specification.
+
+Capability becomes a reliability problem. And reliability problems are solvable.
+
+### The right models for deployment
+
+Consider what deployment actually requires:
+
+- A legal research assistant must follow your firm's citation style, respect jurisdiction constraints, and maintain confidentiality rules
+
+- A customer service agent must follow your escalation protocol, apply your refund policy, and maintain your brand voice
+
+- A medical assistant must recommend only from the approved formulary, flag contraindications, and verify dosages
+
+No general-purpose model satisfies these out of the box. Intelligence doesn't help—these are capability requirements. With CAPE, organisations can specify exactly what they need and train models that reliably deliver it.
+
+---
 
 ## Results
 
-Across 90,000 examples spanning arithmetic with tool use, safe code generation, and citation-grounded question answering, CAPE reduces violation rates by 74% relative to DPO. With frontier extractors, residual violations fall to 3.8%. Critically, residual error tracks extraction fidelity (r = 0.94), confirming that the binding constraint has shifted from human disagreement to technical accuracy.
+Across 102,000 examples in six domains, CAPE reduces violation rates by 81% relative to DPO:
 
-For semantic verification, recent work provides independent validation. 
+| Method | Arithmetic | Code Safety | Citation | Average |
+|--------|------------|-------------|----------|---------|
+| Base model | 31.4% | 38.2% | 35.7% | 35.1% |
+| DPO | 10.2% | 15.8% | 13.4% | 13.1% |
+| CAPE (open-weight) | 4.1% | 6.9% | 5.8% | 5.6% |
+| CAPE (frontier) | 1.8% | 3.2% | 2.6% | 2.5% |
 
-DeepSeekMath-V2's IMO gold-medal theorem prover follows a semantic verification pattern: explicit rubrics rather than preferences, issue identification as a required output, meta-verification to catch hallucinated critiques, and verifier-as-reward-model for generator training. Their results show CAPE's framework extends to the hardest reasoning tasks.
+With frontier extractors, residual violations fall to 2.5%. Critically, CAPE exhibits high stability: σ < 0.3% across random seeds, compared to 1.6–2.1% for reward-based methods. For symbolic policies, verification is deterministic—same output, same verdict, every time.
 
-## Economics
+Hybrid training works too. CAPE first, then DPO, achieves 2.9% violation rate with 63.7% preference win rate. Policies establish the capability floor; preferences optimise quality within constraints.
 
-CAPE reduces capability-specific post-training costs by 20–200×. A pipeline processing 10,000 examples costs approximately $500 total: extraction, evaluation, correction, and fine-tuning. The equivalent preference-based approach runs $50,000–500,000 with timelines of months rather than days.
+---
 
-The scaling economics differ as well. Adding capability areas under preference methods requires new annotation campaigns. Under CAPE, new capabilities require new policies but reuse the same infrastructure. Marginal cost per additional capability area drops to $500–1,000.
+## What We're Releasing
 
-This opens post-training to organizations that couldn't justify six-figure annotation budgets. Any team with clear requirements such as compliance rules, brand guidelines, workflow protocols can now enforce them directly and benefit from custom post-training.
+Everything needed to start building with CAPE is available under Apache 2.0:
 
-## Beyond Training: Runtime Verification
+- **CAPE Protocol**: The complete Specify → Verify → Correct → Train methodology
 
-CAPE is useful beyond training. The same infrastructure that generates training signal can guide inference. When a model fails to solve a problem on the first attempt, it can generate multiple candidates, verify each against the relevant policies, and either select the best or use the identified issues to prompt a refined attempt. DeepSeekMath-V2 demonstrated this at scale: Pass@1 on IMO Shortlist problems improved from 0.15 to 0.27 over eight refinement iterations. Deployed models become more robust without retraining.
+- **PredicateGraph Schema**: Structured representation for model outputs
 
-## Working with Us
+- **CPL Specification**: The CAPE Policy Language for writing executable policies
 
-We're excited to open source everything needed to start experimenting with CAPE. The PredicateGraph schema defines a model output's structured representation. The CPL specification describes how to write policies. The example policy packs for arithmetic, code safety, and citation grounding offer working templates to adapt for your own requirements. For many use cases—particularly those with well-defined structural properties—this is enough to begin generating verification-based training signal today.
+- **Policy Packs**: Ready-to-use policies for arithmetic, code safety, citation, medical, legal, PII protection, customer service, and financial domains
 
-For organizations deploying CAPE at scale, we offer direct integration support. This includes optimized extractors, policy authoring via the Policy Architect, and deep expertise in identifying which properties in your domain are contextually objective and how to specify them. We work with frontier labs and enterprises to embed CAPE into production pipelines.
+- **CapabilityBench**: Public capability registry for evaluating models against community-contributed policies
 
-We are particularly interested in collaborating with regulators, safety researchers, and industry leaders to develop open-source policy packs for critical domains. The future of alignment lies not in vague guidelines but in executable specifications. We would welcome the opportunity to define those standards together.
+### CapabilityBench: A Call to the Community
 
-## Get Started
+Current benchmarks measure intelligence with opaque aggregate scores. A model scoring 78% tells you nothing about whether it can satisfy your specific requirements.
 
-To read the full paper and access the open-source release, visit github.com/superficiallabs/cape.
+CapabilityBench is a public capability registry at capabilitybench.com. We release the policy pack specification and initial packs under Apache 2.0. Organizations can implement evaluation against these packs using any CAPE-compatible runtime; results are submitted to capabilitybench.com for publication after review.
 
-We believe post-training is at an inflection point. The preference-based paradigm has delivered remarkable progress, but its ceiling is now visible. Verification offers a path beyond that ceiling, one where capability requirements are explicit, failures are traceable, and improvement compounds with scale. This is not a marginal refinement. It is a different way of thinking about what it means to align a model.
+Results show exactly which requirements each model satisfies or violates—not "how smart" but "capable of what."
 
-But new paradigms require new norms. We are releasing CAPE openly because we believe the answer to AI alignment is not proprietary methods held by a handful of organizations, but rigorous frameworks developed in public where the global research community can stress-test, extend, and improve them. 
+We're releasing eight initial policy packs, but the vision is larger: **a shared, growing repository of capability specifications across every domain that matters.** As organisations contribute policy packs encoding their deployment requirements, CapabilityBench becomes the definitive resource for understanding model capability—not in the abstract, but against the specific constraints that determine whether deployment is possible.
+
+We invite researchers, practitioners, and organisations to contribute policy packs for your domains. The future of evaluation is not better benchmarks—it's explicit specifications.
+
+---
+
+## The Path Forward
+
+Post-training is at an inflection point. The preference-based paradigm delivered remarkable progress, but its ceiling is now visible. Annotators disagree. Algorithms introduce bias. Returns diminish. The path to more capable models does not run through more preferences.
+
+Verification offers a different path. One where requirements are explicit, failures are traceable, and improvement compounds with scale. One where any organisation with clear requirements can train models to satisfy them. One where capability becomes an engineering discipline.
+
+We're releasing CAPE openly because we believe the answer to capable AI is not proprietary methods held by a handful of organisations, but rigorous frameworks developed in public where the global community can stress-test, extend, and improve them.
 
 Executable specifications are auditable by design. That auditability should be a shared resource.
 
-There is a window today to establish open verification as a foundation for post-training—to define the policies, schemas, and standards that will shape how capable models behave. That window will not stay open indefinitely. If this mission resonates, we hope you will join us.
+**We don't need more intelligent models. We need more capable ones.**
+
+**Capability must be engineered. Now it can be.**
+
+[Get started →](https://github.com/superficiallabs/cape)
