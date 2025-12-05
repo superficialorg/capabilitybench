@@ -138,11 +138,47 @@ input[type='email'] {
   appearance: none;
 }
 
-table {
-  display: block;
-  max-width: fit-content;
-  overflow-x: auto;
-  white-space: nowrap;
+.prose table {
+  @apply w-full border-collapse my-6;
+  display: table;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.prose table thead {
+  @apply bg-neutral-50;
+}
+
+.prose table th {
+  @apply px-4 py-3 text-left font-semibold text-sm text-black border-b border-neutral-200;
+}
+
+.prose table td {
+  @apply px-4 py-3 text-sm text-black border-b border-neutral-100;
+}
+
+.prose table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.prose table tbody tr:hover {
+  @apply bg-neutral-50;
+}
+
+.prose table tbody tr:last-child:hover {
+  @apply bg-neutral-50;
+}
+
+@media (max-width: 640px) {
+  .prose table {
+    @apply text-xs;
+  }
+  
+  .prose table th,
+  .prose table td {
+    @apply px-2 py-2;
+  }
 }
 
 .title {
