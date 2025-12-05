@@ -4,11 +4,7 @@ publishedAt: '2025-12-01'
 summary: 'A systematic practice for making models capable of what users and organisations actually need, reducing violation rates by 81% relative to DPO and cutting costs by 20–200×.'
 ---
 
-# Introducing CAPE: Capability Engineering for AI
-
 [Read the full paper →](https://arxiv.org/abs/XXXX.XXXXX) | [GitHub →](https://github.com/superficiallabs/cape)
-
----
 
 ## The Deployment Gap
 
@@ -19,8 +15,6 @@ This is the deployment gap: the chasm between what models can do in principle an
 **Intelligence** is the ability to solve complex, open-ended problems. **Capability** is the reliable application of intelligence to specific requirements. A model can be extraordinarily intelligent and yet lack the capabilities that deployment demands. Intelligence is necessary but insufficient. Capability must be engineered.
 
 Today we release CAPE (Capability Achievement via Policy Execution) and introduce **Capability Engineering**: a systematic practice for making models capable of what users and organisations actually need.
-
----
 
 ## Why Preference-Based Training Has Stalled
 
@@ -35,8 +29,6 @@ The consequences compound:
 - **The ceiling is fixed.** No amount of investment overcomes the preference plateau. Returns diminish while costs scale.
 
 We don't need more intelligent models. We need more capable ones. And capability requires a different foundation.
-
----
 
 ## The Core Insight: Contextual Objectivity
 
@@ -60,8 +52,6 @@ The disagreement wasn't about values. It was about underspecified requirements. 
 
 This is the unlock: **most capability requirements that matter in production are contextually objective.** They're not matters of taste—they're matters of specification. And what can be specified can be verified. What can be verified can be trained.
 
----
-
 ## How CAPE Works
 
 CAPE implements a closed loop: **Specify → Verify → Correct → Train.**
@@ -76,8 +66,6 @@ CAPE implements a closed loop: **Specify → Verify → Correct → Train.**
 
 This is capability engineering: the same discipline that governs traditional software—explicit requirements, verifiable correctness, traceable failures, validated fixes—applied to model behaviour.
 
----
-
 ## The Loop Compounds
 
 Here's what changes everything: **CAPE's gains compound.**
@@ -89,8 +77,6 @@ Preference-based methods face the opposite dynamic. Annotator disagreement is fi
 With CAPE, the ceiling is technical—extraction accuracy, verifier fidelity—and technical ceilings fall with scale. We measure this directly: violation rate correlates with extraction error at r=0.94. As extraction improves (which it does with each model generation), violation rates fall proportionally.
 
 **Compute investment yields guaranteed returns again.** This is the scaling law that preference-based training lost.
-
----
 
 ## What This Unlocks
 
@@ -130,8 +116,6 @@ Consider what deployment actually requires:
 
 No general-purpose model satisfies these out of the box. Intelligence doesn't help—these are capability requirements. With CAPE, organisations can specify exactly what they need and train models that reliably deliver it.
 
----
-
 ## Results
 
 Across 102,000 examples in six domains, CAPE reduces violation rates by 81% relative to DPO:
@@ -146,8 +130,6 @@ Across 102,000 examples in six domains, CAPE reduces violation rates by 81% rela
 With frontier extractors, residual violations fall to 2.5%. Critically, CAPE exhibits high stability: σ < 0.3% across random seeds, compared to 1.6–2.1% for reward-based methods. For symbolic policies, verification is deterministic—same output, same verdict, every time.
 
 Hybrid training works too. CAPE first, then DPO, achieves 2.9% violation rate with 63.7% preference win rate. Policies establish the capability floor; preferences optimise quality within constraints.
-
----
 
 ## What We're Releasing
 
@@ -174,8 +156,6 @@ Results show exactly which requirements each model satisfies or violates—not "
 We're releasing eight initial policy packs, but the vision is larger: **a shared, growing repository of capability specifications across every domain that matters.** As organisations contribute policy packs encoding their deployment requirements, CapabilityBench becomes the definitive resource for understanding model capability—not in the abstract, but against the specific constraints that determine whether deployment is possible.
 
 We invite researchers, practitioners, and organisations to contribute policy packs for your domains. The future of evaluation is not better benchmarks—it's explicit specifications.
-
----
 
 ## The Path Forward
 
