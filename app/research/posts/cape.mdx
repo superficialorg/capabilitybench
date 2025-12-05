@@ -42,11 +42,28 @@ We call this **contextual objectivity**: the recognition that properties appeari
 
 Our inter-annotator studies confirm this empirically:
 
-| Condition | Agreement |
-|-----------|-----------|
-| Abstract ("Is this good medical advice?") | 63% |
-| Contextualised ("Formulary only, flag contraindications") | 85% |
-| Explicit Policy (executable specification) | 99% |
+<table>
+  <thead>
+    <tr>
+      <th>Condition</th>
+      <th>Agreement</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Abstract ("Is this good medical advice?")</td>
+      <td>63%</td>
+    </tr>
+    <tr>
+      <td>Contextualised ("Formulary only, flag contraindications")</td>
+      <td>85%</td>
+    </tr>
+    <tr>
+      <td>Explicit Policy (executable specification)</td>
+      <td>99%</td>
+    </tr>
+  </tbody>
+</table>
 
 The disagreement wasn't about values. It was about underspecified requirements. Fix the context, and agreement follows.
 
@@ -86,13 +103,42 @@ Preference annotation costs $50K–200K per capability area. CAPE costs ~$500. T
 
 This isn't marginal improvement—it's a category shift. Capability-specific post-training is no longer reserved for frontier labs with annotation budgets. Any organisation with clear requirements can now train models to satisfy them.
 
-| | RLHF/DPO | CAPE |
-|-------|----------|------|
-| Specification | 1–2 weeks | 1–3 days |
-| Data | $20K–50K | $200 |
-| Training | 1–2 weeks | 1–3 days |
-| **Total** | **$50K–200K** | **~$500** |
-| **Timeline** | **3–6 months** | **1–2 weeks** |
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>RLHF/DPO</th>
+      <th>CAPE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Specification</td>
+      <td>1–2 weeks</td>
+      <td>1–3 days</td>
+    </tr>
+    <tr>
+      <td>Data</td>
+      <td>$20K–50K</td>
+      <td>$200</td>
+    </tr>
+    <tr>
+      <td>Training</td>
+      <td>1–2 weeks</td>
+      <td>1–3 days</td>
+    </tr>
+    <tr>
+      <td><strong>Total</strong></td>
+      <td><strong>$50K–200K</strong></td>
+      <td><strong>~$500</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Timeline</strong></td>
+      <td><strong>3–6 months</strong></td>
+      <td><strong>1–2 weeks</strong></td>
+    </tr>
+  </tbody>
+</table>
 
 ### Engineering, not alchemy
 
@@ -120,12 +166,47 @@ No general-purpose model satisfies these out of the box. Intelligence doesn't he
 
 Across 102,000 examples in six domains, CAPE reduces violation rates by 81% relative to DPO:
 
-| Method | Arithmetic | Code Safety | Citation | Average |
-|--------|------------|-------------|----------|---------|
-| Base model | 31.4% | 38.2% | 35.7% | 35.1% |
-| DPO | 10.2% | 15.8% | 13.4% | 13.1% |
-| CAPE (open-weight) | 4.1% | 6.9% | 5.8% | 5.6% |
-| CAPE (frontier) | 1.8% | 3.2% | 2.6% | 2.5% |
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Arithmetic</th>
+      <th>Code Safety</th>
+      <th>Citation</th>
+      <th>Average</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Base model</td>
+      <td>31.4%</td>
+      <td>38.2%</td>
+      <td>35.7%</td>
+      <td>35.1%</td>
+    </tr>
+    <tr>
+      <td>DPO</td>
+      <td>10.2%</td>
+      <td>15.8%</td>
+      <td>13.4%</td>
+      <td>13.1%</td>
+    </tr>
+    <tr>
+      <td>CAPE (open-weight)</td>
+      <td>4.1%</td>
+      <td>6.9%</td>
+      <td>5.8%</td>
+      <td>5.6%</td>
+    </tr>
+    <tr>
+      <td>CAPE (frontier)</td>
+      <td>1.8%</td>
+      <td>3.2%</td>
+      <td>2.6%</td>
+      <td>2.5%</td>
+    </tr>
+  </tbody>
+</table>
 
 With frontier extractors, residual violations fall to 2.5%. Critically, CAPE exhibits high stability: σ < 0.3% across random seeds, compared to 1.6–2.1% for reward-based methods. For symbolic policies, verification is deterministic—same output, same verdict, every time.
 
