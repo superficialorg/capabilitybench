@@ -8,9 +8,12 @@ export const metadata = {
 export default function Cape() {
   return (
     <section>
-      <h1 className="title font-semibold text-2xl tracking-tighter mb-8">
+      <h1 className="title font-semibold text-2xl tracking-tighter mb-4">
         CAPE
       </h1>
+      <p className="mb-12">
+        <Link href="https://arxiv.org/abs/XXXX.XXXXX">Paper →</Link> · <Link href="/research/cape">Blog →</Link> · <Link href="https://github.com/superficiallabs/cape">GitHub →</Link>
+      </p>
       <article className="prose">
         <p className="mb-12">
           We work with frontier labs, regulated enterprises, and AI companies to deploy CAPE at scale. We offer:
@@ -24,9 +27,6 @@ export default function Cape() {
         </ul>
         <p className="mt-12">
           <Link href="mailto:contact@superficiallabs.com">Book a call →</Link>
-        </p>
-        <p>
-          <Link href="https://arxiv.org/abs/XXXX.XXXXX">Paper →</Link> · <Link href="/research/cape">Blog →</Link> · <Link href="https://github.com/superficiallabs/cape">GitHub →</Link>
         </p>
       </article>
     </section>
