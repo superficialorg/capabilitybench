@@ -209,7 +209,7 @@ CAPE works across the spectrum—from deterministic structural properties to nua
 
 More importantly: CAPE keeps improving throughout training while DPO plateaus. The gap widens over time because verification quality compounds while preference disagreement remains fixed.
 
-**Stability**: CAPE shows <0.3% variance across random seeds (vs. 1.6-2.1% for reward-based methods). When your training target is objective, your results are reproducible.
+**Stability**: CAPE shows less than 0.3% variance across random seeds (vs. 1.6-2.1% for reward-based methods). When your training target is objective, your results are reproducible.
 
 **Hybrid works**: CAPE → DPO achieves 2.9% violation rate and 63.7% preference win rate. Define correctness first, then optimize for fluency within those bounds.
 
