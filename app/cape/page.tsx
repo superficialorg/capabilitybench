@@ -12,20 +12,18 @@ export default function Cape() {
         CAPE: A New Paradigm for Post-Training
       </h1>
       <article className="prose">
-        <p>
+        <p className="mb-12">
           We work with frontier labs, regulated enterprises, and AI companies to deploy CAPE at scale.
         </p>
-        <hr />
-        <h2>What we offer</h2>
-        <ul>
+        <h2 className="mt-0">What we offer</h2>
+        <ul className="space-y-4 mb-16">
           <li><strong>Custom specification</strong> — Convert your requirements into verifiable, executable policies</li>
           <li><strong>Expert policy creation</strong> — Replace existing preference labeling with reusable specifications</li>
           <li><strong>Frontier-quality extraction</strong> — Production-grade PredicateGraph extraction for reliable verification</li>
           <li><strong>Annotation-to-policy conversion</strong> — Transform existing labeled data into composable policy packs</li>
           <li><strong>Custom learned verifiers</strong> — Rubric-based verifiers for semantic properties your rules can't capture</li>
         </ul>
-        <hr />
-        <p>
+        <p className="mt-12">
           <Link href="mailto:contact@superficiallabs.com">Book a call →</Link>
         </p>
         <p>
