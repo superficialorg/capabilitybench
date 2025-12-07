@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ArrowUpRight } from 'lucide-react'
 
 export const metadata = {
   title: 'CAPE',
@@ -23,7 +24,7 @@ export default function Cape() {
           <li><strong>Learned Verifiers</strong>: Build rubric-based verifiers for semantic properties.</li>
         </ul>
         <p className="mt-8">
-          <Link href="https://arxiv.org/abs/XXXX.XXXXX">Read the full paper →</Link> | <Link href="https://github.com/superficiallabs/cape">GitHub →</Link> | <Link href="mailto:contact@superficiallabs.com">Book a call →</Link>
+          <Link href="https://arxiv.org/abs/XXXX.XXXXX" className="inline-flex items-center gap-1">Read the full paper <ArrowUpRight className="w-4 h-4" /></Link> | <Link href="https://github.com/superficiallabs/cape" className="inline-flex items-center gap-1">GitHub <ArrowUpRight className="w-4 h-4" /></Link> | <Link href="mailto:contact@superficiallabs.com" className="inline-flex items-center gap-1">Book a call <ArrowUpRight className="w-4 h-4" /></Link>
         </p>
       </article>
     </section>

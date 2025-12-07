@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { ArrowUpRight } from 'lucide-react'
 
 export default function Page() {
   return (
@@ -24,9 +25,9 @@ export default function Page() {
         </span>
         <Link
           href="/research/cape"
-          className="text-black font-medium transition-colors hover:text-neutral-600"
+          className="text-black font-medium transition-colors hover:text-neutral-600 inline-flex items-center gap-1"
         >
-          Introducing CAPE: Capability Engineering for AI →
+          Introducing CAPE: Capability Engineering for AI <ArrowUpRight className="w-4 h-4" />
         </Link>
       </div>
     </section>
