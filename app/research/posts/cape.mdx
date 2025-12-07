@@ -8,7 +8,7 @@ summary: 'A systematic practice for making models capable of what users and orga
 
 A model that wins mathematical olympiads cannot reliably follow a hospital formulary. A model that writes publishable code cannot guarantee it will cite only the documents you provide. A model that passes the bar exam cannot enforce your firm's jurisdiction constraints.
 
-This is the deployment gap: the chasm between what models can do in principle and what they can be trusted to do in practice. We have spent the last three years scaling intelligence. We have not scaled capability.
+This is the deployment gap: the chasm between what models can do in principle and what they can be trusted to do in practice. We have spent the last three years scaling intelligence, but we haven't scaled capability.
 
 **Intelligence** is the ability to solve complex, open-ended problems. **Capability** is the reliable application of intelligence to specific requirements. A model can be extraordinarily intelligent and yet lack the capabilities that deployment demands. Intelligence is necessary but insufficient. Capability must be engineered.
 
@@ -16,7 +16,7 @@ Today we release CAPE (Capability Achievement via Policy Execution) and introduc
 
 ## Why Preference-Based Training Has Stalled
 
-Post-training methods like RLHF optimise for intelligence. They ask annotators: "Which response is better?" But annotators disagree 30–50% of the time on subtle judgments. This isn't fixable with better guidelines or more training—it reflects genuine variance in human judgment when requirements are underspecified.
+Post-training methods like RLHF optimise for intelligence. They ask annotators: "Which response is better?" But annotators disagree 30–50% of the time on subtle judgments. This isn't fixable with better guidelines or more training, it reflects genuine variance in human judgment when requirements are underspecified.
 
 The consequences compound:
 
@@ -28,13 +28,13 @@ The consequences compound:
 
 We don't need more intelligent models. We need more capable ones. And capability requires a different foundation.
 
-## The Core Insight: Contextual Objectivity
+## Contextual Objectivity
 
-A common objection: "You can't write specifications for the things that matter. Real requirements are too subjective."
+A common objection to specification-based approaches is: "You can't write specifications for the things that matter. Real requirements are too subjective."
 
 This is wrong. It confuses *abstract* with *subjective*.
 
-"Good medical advice" is abstract—it means different things to different people. But "recommend only drugs from this formulary, flag contraindications from the patient record, verify dosages against weight-based limits" is objective. There is a fact of the matter. It can be verified.
+"Good medical advice" is abstract. It means different things to different people. But "recommend only drugs from this formulary, flag contraindications from the patient record, verify dosages against weight-based limits" is objective. There is a fact of the matter. It can be verified.
 
 We call this **contextual objectivity**: the recognition that properties appearing subjective become objective once context is fixed. What seems like a matter of taste in the abstract becomes a testable requirement when you specify: good according to whom, for what purpose, under what constraints.
 
@@ -65,7 +65,7 @@ Our inter-annotator studies confirm this empirically:
 
 The disagreement wasn't about values. It was about underspecified requirements. Fix the context, and agreement follows.
 
-This is the unlock: **most capability requirements that matter in production are contextually objective.** They're not matters of taste—they're matters of specification. And what can be specified can be verified. What can be verified can be trained.
+This is the unlock for making symbolic AI work: **most capability requirements that matter in production are contextually objective.** They're not matters of taste, they're matters of specification. And what can be specified can be verified. What can be verified can be trained.
 
 ## How CAPE Works
 
