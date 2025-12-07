@@ -13,7 +13,7 @@ export default function Cape() {
         CAPE
       </h1>
       <article className="prose">
-        <p className="font-medium flex gap-4">
+        <p className="flex gap-4">
           <a href="https://arxiv.org/abs/XXXX.XXXXX" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5">
             Full Paper <ArrowUpRight className="w-4 h-4" />
           </a>
@@ -34,7 +34,7 @@ export default function Cape() {
           <li><strong>Learned Verifiers</strong> — Train rubric-based verifiers for semantic properties.</li>
         </ul>
         
-        <p className="mt-24 font-medium">
+        <p className="mt-32">
           <Link href="mailto:research@superficiallabs.com" className="inline-flex items-center gap-0.5">
             Book a call <ArrowUpRight className="w-4 h-4" />
           </Link>
