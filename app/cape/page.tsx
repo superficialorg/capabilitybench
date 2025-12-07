@@ -12,18 +12,18 @@ export default function Cape() {
         CAPE
       </h1>
       <p className="mb-12">
-        <Link href="https://arxiv.org/abs/XXXX.XXXXX">Paper →</Link> · <Link href="/research/cape">Blog →</Link> · <Link href="https://github.com/superficiallabs/cape">GitHub →</Link>
+        <Link href="https://arxiv.org/abs/XXXX.XXXXX">Read the full paper →</Link> | <Link href="https://github.com/superficiallabs/cape">GitHub →</Link>
       </p>
       <article className="prose">
         <p className="mb-12">
-          We work with frontier labs, regulated enterprises, and AI companies to deploy CAPE at scale. We offer:
+          We work with frontier labs, regulated enterprises, and AI companies to deploy CAPE at scale. What we offer:
         </p>
         <ul className="space-y-4 mb-16">
-          <li><strong>Specification engineering</strong> — Translate requirements into executable capability policies.</li>
-          <li><strong>Policy authoring</strong> — Replace preference labels with reusable, testable specifications.</li>
-          <li><strong>PredicateGraph extraction</strong> — High-fidelity extraction for reliable verification.</li>
-          <li><strong>Annotation-to-policy conversion</strong> — Convert existing labeled data into structured policy packs.</li>
-          <li><strong>Learned verifiers</strong> — Build rubric-based verifiers for semantic properties not captured by rules.</li>
+          <li><strong>Specification Engineering</strong>: Translate your requirements into executable policies and rubrics.</li>
+          <li><strong>Policy Architecture</strong>: Design composable policy stacks for your domain and context without preference labelling.</li>
+          <li><strong>High-Fidelity Extraction</strong>: Implement PredicateGraph pipelines optimized for your data.</li>
+          <li><strong>Annotation-to-Policy Conversion</strong>: Extract implicit patterns from existing labeled data into explicit specifications.</li>
+          <li><strong>Learned Verifiers</strong>: Build rubric-based verifiers for semantic properties.</li>
         </ul>
         <p className="mt-12">
           <Link href="mailto:contact@superficiallabs.com">Book a call →</Link>
