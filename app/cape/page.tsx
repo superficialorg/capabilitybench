@@ -13,18 +13,18 @@ export default function Cape() {
         CAPE
       </h1>
       <article className="prose">
-        <p className="font-semibold">
+        <p className="font-medium">
           <a href="https://arxiv.org/abs/XXXX.XXXXX" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5">
             Full Paper <ArrowUpRight className="w-4 h-4" />
           </a>
         </p>
-        <p className="font-semibold">
+        <p className="font-medium">
           <Link href="/research/cape" className="inline-flex items-center gap-0.5">
             Launch Post <ArrowUpRight className="w-4 h-4" />
           </Link>
         </p>
         
-        <p className="mb-12 mt-8">
+        <p className="mb-16 mt-8">
           We work with frontier labs, regulated enterprises, and AI companies to deploy CAPE at scale. We offer:
         </p>
         
@@ -44,7 +44,9 @@ export default function Cape() {
         <p>Build rubric-based verifiers for semantic properties—reasoning validity, plan feasibility, domain-specific correctness—with meta-verification to catch hallucinated issues.</p>
         
         <p className="mt-16">
-          <Link href="mailto:research@superficiallabs.com">Book a call</Link>
+          <Link href="mailto:research@superficiallabs.com" className="inline-flex items-center gap-0.5">
+            Book a call <ArrowUpRight className="w-4 h-4" />
+          </Link>
         </p>
       </article>
     </section>
