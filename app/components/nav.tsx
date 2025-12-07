@@ -8,9 +8,6 @@ const navItems = {
   '/research': {
     name: 'research',
   },
-  '/joinus': {
-    name: 'join us',
-  },
   '/cape': {
     name: 'cape',
   },
