@@ -13,12 +13,10 @@ export default function Cape() {
         CAPE
       </h1>
       <article className="prose">
-        <p className="font-medium">
+        <p className="font-medium flex gap-4">
           <a href="https://arxiv.org/abs/XXXX.XXXXX" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5">
             Full Paper <ArrowUpRight className="w-4 h-4" />
           </a>
-        </p>
-        <p className="font-medium">
           <Link href="/research/cape" className="inline-flex items-center gap-0.5">
             Launch Post <ArrowUpRight className="w-4 h-4" />
           </Link>
@@ -28,22 +26,15 @@ export default function Cape() {
           We work with frontier labs, regulated enterprises, and AI companies to deploy CAPE at scale. We offer:
         </p>
         
-        <p><strong>Specification Engineering</strong></p>
-        <p>Translate your requirements into executable policies and rubrics. We work with your domain experts to convert implicit expectations into verifiable specifications.</p>
+        <ul>
+          <li><strong>Specification Engineering</strong> — Convert capability requirements into executable policies and rubrics.</li>
+          <li><strong>Policy Architecture</strong> — Design composable, reusable policy stacks that replace annotation campaigns.</li>
+          <li><strong>High-Fidelity Extraction</strong> — Build PredicateGraph pipelines that maximize capability gains.</li>
+          <li><strong>Annotation-to-Policy Conversion</strong> — Turn existing labeled data into reusable specifications, amortizing prior training spend.</li>
+          <li><strong>Learned Verifiers</strong> — Train rubric-based verifiers for semantic properties.</li>
+        </ul>
         
-        <p><strong>Policy Architecture</strong></p>
-        <p>Design composable policy stacks for your domain—no preference labelling required. Policies are reusable across model versions, auditable, and version-controlled.</p>
-        
-        <p><strong>High-Fidelity Extraction</strong></p>
-        <p>Implement PredicateGraph pipelines optimized for your outputs. Extraction accuracy determines your ceiling; we push it as high as current models allow.</p>
-        
-        <p><strong>Annotation-to-Policy Conversion</strong></p>
-        <p>Already have labeled data? We extract the implicit patterns into explicit specifications, turning sunk annotation costs into reusable assets.</p>
-        
-        <p><strong>Learned Verifiers</strong></p>
-        <p>Build rubric-based verifiers for semantic properties—reasoning validity, plan feasibility, domain-specific correctness—with meta-verification to catch hallucinated issues.</p>
-        
-        <p className="mt-16">
+        <p className="mt-20 font-medium">
           <Link href="mailto:research@superficiallabs.com" className="inline-flex items-center gap-0.5">
             Book a call <ArrowUpRight className="w-4 h-4" />
           </Link>
