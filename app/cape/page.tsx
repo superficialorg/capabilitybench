@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ArrowUpRight } from 'lucide-react'
 
 export const metadata = {
   title: 'CAPE',
@@ -12,11 +13,20 @@ export default function Cape() {
         CAPE
       </h1>
       <article className="prose">
-        <p className="mb-12">
-          We work with frontier labs, regulated enterprises, and AI companies to deploy CAPE at scale.
+        <p className="font-semibold">
+          <a href="https://arxiv.org/abs/XXXX.XXXXX" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5">
+            Full Paper <ArrowUpRight className="w-4 h-4" />
+          </a>
+        </p>
+        <p className="font-semibold">
+          <Link href="/research/cape" className="inline-flex items-center gap-0.5">
+            Launch Post <ArrowUpRight className="w-4 h-4" />
+          </Link>
         </p>
         
-        <p>What We Offer</p>
+        <p className="mb-12 mt-8">
+          We work with frontier labs, regulated enterprises, and AI companies to deploy CAPE at scale. We offer:
+        </p>
         
         <p><strong>Specification Engineering</strong></p>
         <p>Translate your requirements into executable policies and rubrics. We work with your domain experts to convert implicit expectations into verifiable specifications.</p>
@@ -34,11 +44,7 @@ export default function Cape() {
         <p>Build rubric-based verifiers for semantic properties—reasoning validity, plan feasibility, domain-specific correctness—with meta-verification to catch hallucinated issues.</p>
         
         <p className="mt-16">
-          <strong>Contact:</strong> <Link href="mailto:research@superficiallabs.com">research@superficiallabs.com</Link>
-        </p>
-        
-        <p>
-          Read the paper: <Link href="https://arxiv.org/abs/2512.XXXXX">CAPE: Capability Achievement via Policy Execution</Link>
+          <Link href="mailto:research@superficiallabs.com">Book a call</Link>
         </p>
       </article>
     </section>
