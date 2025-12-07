@@ -34,7 +34,7 @@ export default function Cape() {
           <li><strong>Learned Verifiers</strong> — Train rubric-based verifiers for semantic properties.</li>
         </ul>
         
-        <p className="mt-20 font-medium">
+        <p className="mt-24 font-medium">
           <Link href="mailto:research@superficiallabs.com" className="inline-flex items-center gap-0.5">
             Book a call <ArrowUpRight className="w-4 h-4" />
           </Link>
