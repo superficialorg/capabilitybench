@@ -13,19 +13,23 @@ export default function Cape() {
       </h1>
       <article className="prose">
         <p>
-          CAPE is a post-training protocol that replaces expensive, noisy preference labeling with executable verification. Instead of collecting human judgments that disagree 30–50% of the time, CAPE lets you specify requirements directly and train models to satisfy them. The result: 74% fewer violations than preference-based methods, at 20–200× lower cost, with full auditability for regulated industries.
+          We work with frontier labs, regulated enterprises, and AI companies to deploy CAPE at scale.
         </p>
-        <p>
-          We work with frontier labs and enterprises to deploy CAPE at scale, providing optimized extractors, rapid policy authoring, and expertise in translating your requirements into verifiable specifications.
-        </p>
+        <hr />
+        <h2>What we offer</h2>
+        <ul>
+          <li><strong>Custom specification</strong> — Convert your requirements into verifiable, executable policies</li>
+          <li><strong>Expert policy creation</strong> — Replace existing preference labeling with reusable specifications</li>
+          <li><strong>Frontier-quality extraction</strong> — Production-grade PredicateGraph extraction for reliable verification</li>
+          <li><strong>Annotation-to-policy conversion</strong> — Transform existing labeled data into composable policy packs</li>
+          <li><strong>Custom learned verifiers</strong> — Rubric-based verifiers for semantic properties your rules can't capture</li>
+        </ul>
+        <hr />
         <p>
           <Link href="mailto:contact@superficiallabs.com">Book a call →</Link>
         </p>
         <p>
-          <Link href="/research/cape">Read CAPE technical paper →</Link>
-        </p>
-        <p>
-          <Link href="/research/cape">Read CAPE release blog →</Link>
+          <Link href="https://arxiv.org/abs/XXXX.XXXXX">Paper →</Link> · <Link href="/research/cape">Blog →</Link> · <Link href="https://github.com/superficiallabs/cape">GitHub →</Link>
         </p>
       </article>
     </section>
