@@ -4,6 +4,8 @@ publishedAt: '2025-12-05'
 summary: 'A new protocol for post-training that shifts AI development from optimizing intelligence to engineering capability.'
 ---
 
+[Full Paper](https://arxiv.org/abs/XXXX.XXXXX)
+
 Today we're releasing CAPE (Capability Achievement via Policy Execution), a new protocol for post-training that shifts AI development from optimizing intelligence to engineering capability. Along with the research paper, we're open-sourcing the full protocol, specification language, and policy packs under Apache 2.0, and launching CapabilityBench, a community registry for evaluating models against explicit capability requirements.
 
 ## Intelligence Isn't Enough
@@ -24,11 +26,11 @@ It's the difference between "can hold a conversation" and "can operate as a cust
 
 A model can be extraordinarily intelligent while lacking basic capabilities. This is the deployment gap: the space between what models can theoretically do and what they reliably do when requirements must be met.
 
-Current post-training methods—RLHF, DPO, and their variants—optimize for intelligence. They collect human preferences, train reward models, and nudge outputs toward what annotators prefer. The problem is that preferences are noisy. Annotators disagree 30–50% of the time on subtle comparisons, and that disagreement rate doesn't improve with more compute or better models. It's a structural ceiling.
+Current post-training methods like RLHF, DPO, and their variants, optimize for intelligence. They collect human preferences, train reward models, and nudge outputs toward what annotators prefer. The problem is that preferences are noisy. Annotators disagree 30–50% of the time on subtle comparisons, and that disagreement rate doesn't improve with more compute or better models. It's a structural ceiling.
 
 CAPE takes a different approach entirely. Instead of asking "which output do humans prefer?", it asks "does this output satisfy this specification?"
 
-## Capability Engineering
+## Introducing Capability Engineering
 
 We propose completing the AI development stack with a third layer: capability engineering—the systematic practice of defining, verifying, and training models against executable specifications.
 
