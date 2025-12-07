@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { ArrowUpRight } from 'lucide-react'
 
 export const metadata = {
   title: 'CAPE',
@@ -14,17 +13,32 @@ export default function Cape() {
       </h1>
       <article className="prose">
         <p className="mb-12">
-          We work with frontier labs, regulated enterprises, and AI companies to deploy CAPE at scale. What we offer:
+          We work with frontier labs, regulated enterprises, and AI companies to deploy CAPE at scale.
         </p>
-        <ul className="space-y-4 mb-12">
-          <li><strong>Specification Engineering</strong>: Translate your requirements into executable policies and rubrics.</li>
-          <li><strong>Policy Architecture</strong>: Design composable policy stacks for your domain and context without preference labelling.</li>
-          <li><strong>High-Fidelity Extraction</strong>: Implement PredicateGraph pipelines optimized for your data.</li>
-          <li><strong>Annotation-to-Policy Conversion</strong>: Extract implicit patterns from existing labeled data into explicit specifications.</li>
-          <li><strong>Learned Verifiers</strong>: Build rubric-based verifiers for semantic properties.</li>
-        </ul>
-        <p className="mt-8">
-          <Link href="https://arxiv.org/abs/XXXX.XXXXX" className="inline-flex items-center gap-1">Read the full paper <ArrowUpRight className="w-4 h-4" /></Link> | <Link href="https://github.com/superficiallabs/cape" className="inline-flex items-center gap-1">GitHub <ArrowUpRight className="w-4 h-4" /></Link> | <Link href="mailto:contact@superficiallabs.com" className="inline-flex items-center gap-1">Book a call <ArrowUpRight className="w-4 h-4" /></Link>
+        
+        <h2>What We Offer</h2>
+        
+        <p><strong>Specification Engineering</strong></p>
+        <p>Translate your requirements into executable policies and rubrics. We work with your domain experts to convert implicit expectations into verifiable specifications.</p>
+        
+        <p><strong>Policy Architecture</strong></p>
+        <p>Design composable policy stacks for your domain—no preference labelling required. Policies are reusable across model versions, auditable, and version-controlled.</p>
+        
+        <p><strong>High-Fidelity Extraction</strong></p>
+        <p>Implement PredicateGraph pipelines optimized for your outputs. Extraction accuracy determines your ceiling; we push it as high as current models allow.</p>
+        
+        <p><strong>Annotation-to-Policy Conversion</strong></p>
+        <p>Already have labeled data? We extract the implicit patterns into explicit specifications, turning sunk annotation costs into reusable assets.</p>
+        
+        <p><strong>Learned Verifiers</strong></p>
+        <p>Build rubric-based verifiers for semantic properties—reasoning validity, plan feasibility, domain-specific correctness—with meta-verification to catch hallucinated issues.</p>
+        
+        <p className="mt-12">
+          <strong>Contact:</strong> <Link href="mailto:research@superficiallabs.com">research@superficiallabs.com</Link>
+        </p>
+        
+        <p>
+          Read the paper: <Link href="https://arxiv.org/abs/2512.XXXXX">CAPE: Capability Achievement via Policy Execution</Link>
         </p>
       </article>
     </section>
