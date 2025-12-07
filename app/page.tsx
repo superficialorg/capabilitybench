@@ -27,7 +27,7 @@ export default function Page() {
           href="/research/cape"
           className="text-black font-medium transition-colors hover:text-neutral-600 inline-flex items-center gap-1"
         >
-          Introducing CAPE: Capability Engineering for AI <ArrowUpRight className="w-4 h-4" />
+          Introducing CAPE: From Intelligence Training to Capability Engineering <ArrowUpRight className="w-4 h-4" />
         </Link>
       </div>
     </section>

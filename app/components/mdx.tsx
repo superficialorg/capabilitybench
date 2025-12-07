@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
+import { ArrowUpRight } from 'lucide-react'
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -40,11 +41,31 @@ function CustomLink(props) {
     return <a {...props} />
   }
 
-  return <a target="_blank" rel="noopener noreferrer" {...props} />
+  // Add arrow icon for http/https external links
+  if (href.startsWith('http://') || href.startsWith('https://')) {
+    return (
+      <a target="_blank" rel="noopener noreferrer" {...props} className="inline-flex items-center gap-0.5">
+        {props.children}
+        <ArrowUpRight className="w-4 h-4" />
+      </a>
+    )
+  }
+
+  // mailto: and other links without arrow
+  return <a {...props} />
 }
 
 function RoundedImage(props) {
   return <Image alt={props.alt} className="rounded-lg" {...props} />
+}
+
+function ExternalLink({ href, children }) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5">
+      {children}
+      <ArrowUpRight className="w-4 h-4" />
+    </a>
+  )
 }
 
 function Code({ children, ...props }) {
@@ -96,6 +117,7 @@ let components = {
   a: CustomLink,
   code: Code,
   Table,
+  ExternalLink,
 }
 
 export function CustomMDX(props) {

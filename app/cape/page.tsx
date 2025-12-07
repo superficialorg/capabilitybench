@@ -16,7 +16,7 @@ export default function Cape() {
           We work with frontier labs, regulated enterprises, and AI companies to deploy CAPE at scale.
         </p>
         
-        <h2>What We Offer</h2>
+        <p>What We Offer</p>
         
         <p><strong>Specification Engineering</strong></p>
         <p>Translate your requirements into executable policies and rubrics. We work with your domain experts to convert implicit expectations into verifiable specifications.</p>
@@ -33,7 +33,7 @@ export default function Cape() {
         <p><strong>Learned Verifiers</strong></p>
         <p>Build rubric-based verifiers for semantic properties—reasoning validity, plan feasibility, domain-specific correctness—with meta-verification to catch hallucinated issues.</p>
         
-        <p className="mt-12">
+        <p className="mt-16">
           <strong>Contact:</strong> <Link href="mailto:research@superficiallabs.com">research@superficiallabs.com</Link>
         </p>
         
