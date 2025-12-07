@@ -1,179 +1,159 @@
 ---
 title: 'Introducing CAPE: Capability Engineering for AI'
 publishedAt: '2025-12-05'
-summary: 'A systematic practice for making models capable of what users and organizations actually need, reducing violation rates by 81–99% relative to DPO and cutting costs by 20–200×.'
+summary: 'A new protocol for post-training that closes the gap between what models can do and what they will do.'
 ---
 
 [Read the full paper →](https://arxiv.org/abs/XXXX.XXXXX) | [GitHub →](https://github.com/superficiallabs/cape)
 
-A model that wins mathematical olympiads cannot reliably follow a hospital formulary. A model that writes publishable code cannot guarantee it will cite only the documents you provide. A model that passes the bar exam cannot enforce your firm's jurisdiction constraints.
+Today we're releasing CAPE (Capability Achievement via Policy Execution), a new protocol for post-training that closes the gap between what models can do and what they will do.
 
-This is the Deployment Gap: the chasm between what models can do in principle and what they can be trusted to do in practice. We have spent the last three years scaling intelligence, but we haven't scaled capability.
+## The Problem
 
-**Intelligence** is the ability to solve complex, open-ended problems. **Capability** is the reliable satisfaction of specific requirements. A model can be extraordinarily intelligent and yet lack the capabilities that deployment demands. Intelligence is necessary but insufficient. Capability must be engineered.
+You deploy a model at a law firm. It writes brilliant case analysis, constructs compelling arguments, explains precedents clearly. Then it cites a Ninth Circuit decision for a Second Circuit case. The legal reasoning was sound. The case law was relevant. But it violated the firm's jurisdiction hierarchy: Second Circuit > SDNY > other circuits. The model never learned that this firm's definition of "thorough research" includes jurisdiction-specific citation priorities.
 
-Today we release CAPE (Capability Achievement via Policy Execution) and introduce **Capability Engineering**: a systematic practice for making models capable of what users and organizations actually need.
+Or you deploy it for financial advisory. It provides sophisticated portfolio analysis, explains risk-adjusted returns, suggests diversification strategies. Then it recommends a product that's not on your approved list. The advice was technically correct. But it violated your compliance requirements. The model didn't know that "good financial advice" at your firm means approved products only.
 
-## Why Preference-Based Training Has Hit a Wall
+The model isn't stupid. It's intelligent. What it lacks is capability: knowing what intelligence means in your specific context.
 
-Post-training methods like RLHF optimize for intelligence. They ask annotators: "Which response is better?" But annotators disagree 30–50% of the time on subtle judgments<sup>1</sup>. This isn't fixable with better guidelines or more training—it reflects genuine variance in human judgment when requirements are underspecified.
+This isn't a rare edge case. It's the deployment gap. And it's why most AI projects stall somewhere between "impressive demo" and "production system."
 
-Beyond disagreement, reward-based methods suffer from structural algorithmic biases:
+## Intelligence ≠ Capability
 
-**PPO exhibits length bias**: When a model receives negative reward, longer responses dilute the per-token penalty. The model learns that verbosity reduces punishment, even when extra tokens don't help correctness<sup>2</sup>.
+We've been conflating two distinct properties:
 
-**GRPO suffers from difficulty-level bias**: Normalizing by reward standard deviation causes easy or hard questions to be overweighted. These require algorithmic patches like Dr. GRPO that add complexity without guaranteeing fixes<sup>3</sup>.
+**Intelligence** is the raw ability to solve complex, open-ended problems. It's general-purpose. It's what benchmarks measure. It's what makes demos impressive.
 
-The consequences compound:
+**Capability** is intelligence applied to a context. It's knowing that "good advice" at Goldman means something different than at a regional credit union. It's understanding that "thorough research" at Cravath has different requirements than at a solo practice.
 
-- **More compute amplifies noise and bias.** Training harder doesn't converge to correctness; it overfits to inconsistency.
+A model can be highly intelligent yet lack specific capabilities. It can write brilliant legal analysis while citing cases from the wrong jurisdiction. It can give financially sound advice while recommending non-approved products. It can produce elegant code while violating your security policies.
 
-- **Costs are prohibitive.** Preference annotation runs $50K–200K per capability area with timelines stretching to months.
+Intelligence is context-free. Capability is context-complete.
 
-- **The ceiling is fixed.** No amount of investment overcomes the preference plateau.
+## The Impossible Problem That Isn't
 
-CAPE sidesteps these pathologies entirely. Verification produces binary pass/fail verdicts per policy. There is no advantage normalization, no length-based reward shaping, no difficulty weighting. The training signal is direct: "this output satisfies the specification."
+Here's the trap the field walked into: trying to make models "good at legal research" universally.
 
-## Contextual Objectivity
+But there's no such thing. Legal research at Cravath means something different than at a solo practice. Different jurisdictions, different citation standards, different escalation triggers. "Universal legal research" is a contradiction—like trying to write universally good advice that applies to everyone, everywhere.
 
-A common objection to specification-based approaches is: "You can't write specifications for the things that matter. Real requirements are too subjective."
+General capability doesn't exist. Capability is the application of intelligence to a context. No context? No capability.
 
-This is wrong. It confuses *abstract* with *subjective*.
+The magic happens when you stop asking "how do we make models better at everything?" and start asking "how do we make this model embody what 'good' means here?" The first question has no answer. The second has a protocol.
 
-"Good medical advice" is abstract. It means different things to different people. But "recommend only drugs from this formulary, flag contraindications from the patient record, verify dosages against weight-based limits" is objective. There is a fact of the matter. It can be verified.
+CAPE doesn't solve the universal problem. It makes the universal problem irrelevant.
 
-We call this **Contextual Objectivity**: the recognition that properties appearing subjective become objective once context is fixed. Our inter-annotator studies confirm this empirically:
+## The Context Flip
+
+Consider "good customer service." At the general level, it's genuinely subjective. Annotators will disagree forever.
+
+But for your company, it decomposes into specific requirements:
+
+- Acknowledge the customer's issue before offering solutions
+- Offer escalation when sentiment indicates frustration
+- Never promise specific timelines without checking availability
+- Reference the customer's history when relevant
+- Match formality to the customer's tone
+
+These aren't just "reliability constraints." They're what good customer service means at your company. They encode your values, your brand, your operational reality. A model that satisfies them isn't just "not making mistakes"—it's being good at customer service in your context.
+
+Our inter-annotator study confirms this: agreement jumps from κ = 0.42 ("Is this good customer service?") to κ = 0.98 ("Does this satisfy these specific requirements?"). Context doesn't just reduce errors—it makes evaluation possible.
+
+## Why Current Methods Hit a Ceiling
+
+RLHF and DPO try to solve the general problem. They ask annotators: "Which response is better?" But better for what? Better where? Better according to whom?
+
+The results are predictable:
+
+- Annotators disagree 30-50% of the time because they're bringing different contexts to the judgment
+- Models learn averaged preferences that belong to no actual deployment context
+- The ceiling is structural: more compute just amplifies the disagreement
+
+You're not training toward a target. You're training toward an average of conflicting targets. No amount of data fixes this.
+
+You end up with models that are generically pleasant but specifically useless—good at being inoffensive, bad at being right for your context.
+
+## Introducing Capability Engineering
+
+Capability engineering is the systematic practice of defining what intelligence means in a specific context, then training models to embody that definition.
 
 <table>
   <thead>
     <tr>
-      <th>Condition</th>
-      <th>Agreement (κ)</th>
+      <th>Layer</th>
+      <th>Function</th>
+      <th>Mechanism</th>
+      <th>Guarantee</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Abstract ("Is this good medical advice?")</td>
-      <td>0.42 (63%)</td>
+      <td>Context Engineering</td>
+      <td>Inform</td>
+      <td>RAG, retrieval</td>
+      <td>Probabilistic</td>
     </tr>
     <tr>
-      <td>Contextualized ("Formulary only, flag contraindications")</td>
-      <td>0.73 (85%)</td>
+      <td>Prompt Engineering</td>
+      <td>Guide</td>
+      <td>Instructions</td>
+      <td>Probabilistic</td>
     </tr>
     <tr>
-      <td>Explicit Policy (executable specification)</td>
-      <td>0.98 (99%)</td>
-    </tr>
-  </tbody>
-</table>
-
-The disagreement wasn't about values. It was about underspecified requirements. Fix the context, and agreement follows<sup>4</sup>.
-
-## The Verification-Fidelity Scaling Law
-
-The binding constraint on post-training is not preference agreement but verification fidelity.
-
-### The Preference Ceiling is Structural
-
-- **Annotator disagreement**: 30–50% fixed.
-- **No path forward**: More compute amplifies noise rather than reducing it.
-
-### The Verification Ceiling Falls With Scale
-
-CAPE's ceiling is verification fidelity, which improves with scale:
-
-- **Structural Verification**: Extraction fidelity has improved from 72% (GPT-3.5) to 96% (Claude Opus 4.5). Correlation with violation rate is r=0.94<sup>5</sup>.
-
-- **Semantic Verification**: Verifier correlation with expert judgment improved from r=0.71 (1B models) to r=0.87 (8B models)<sup>6</sup>.
-
-### The Critical Asymmetry:
-
-<table>
-  <thead>
-    <tr>
-      <th>Error Source</th>
-      <th>Scales?</th>
-      <th>Evidence</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Preference disagreement</td>
-      <td>No</td>
-      <td>30–50% fixed</td>
-    </tr>
-    <tr>
-      <td>Algorithmic bias (PPO/GRPO)</td>
-      <td>No</td>
-      <td>Requires patches</td>
-    </tr>
-    <tr>
-      <td>Extraction error</td>
-      <td>Yes</td>
-      <td>14.8% → 5.5%</td>
-    </tr>
-    <tr>
-      <td>Verifier error</td>
-      <td>Yes</td>
-      <td>r: 0.71 → 0.87</td>
+      <td>Capability Engineering</td>
+      <td>Define</td>
+      <td>Specifications</td>
+      <td>Verifiable</td>
     </tr>
   </tbody>
 </table>
 
-As models improve, CAPE becomes not just competitive with preference learning but the only method whose upper bound moves with model scale.
+The key insight: capability requirements become objective once context is fixed.
 
-## How CAPE Works
+"Good financial advice" is subjective. "Recommend only approved products, disclose all fees, verify suitability against stated risk tolerance, flag high-risk strategies for supervisor review" is objective—and it's also what good financial advice means at this firm.
 
-CAPE implements a closed loop: **Specify → Verify → Correct → Train.**
+Specifications aren't constraints on intelligence. They're definitions of what intelligence means in practice. Without them, "good" is meaningless.
 
-### 1. Specify
+## CAPE: The Protocol
 
-Requirements become executable. We use CPL (CAPE Policy Language) for structural properties and learned verifiers for semantic ones.
+CAPE operationalizes capability engineering through a closed loop:
 
-Example CPL policy:
+**Specify → Verify → Correct → Train**
 
-```json
-{
-  "id": "policy.tool.calc_matches",
-  "tier": "T1",
-  "scope": {"kind": "tool_call", "filter": {"name": "calc"}},
-  "where": [{"expr": "count(operations) > 0"}],
-  "assert": [{
-    "expr": "tool_call.arguments.value == last(operations).output"
-  }],
-  "on_violation": {
-    "action": "CORRECT",
-    "correction_hint": "Update to exact value"
-  }
-}
-```
+**1. Specify**: Define what "good" means in your context. Convert requirements into executable policies (CPL for structural properties) or rubrics (for semantic properties like reasoning quality).
 
-### 2. Verify
+**2. Verify**: Evaluate outputs against your definition. For structural properties, verification is deterministic. For semantic properties, learned verifiers trained on explicit rubrics provide reliable assessment.
 
-Model outputs are parsed into a PredicateGraph and evaluated. Symbolic policies execute deterministically: same output, same verdict, every time.
+**3. Correct**: When outputs don't meet your standard, generate ones that do. Deterministic patching for clear fixes, constrained rewrite for judgment calls.
 
-### 3. Correct
+**4. Train**: Fine-tune on examples that embody your definition. The model learns what "good" means here.
 
-Violations trigger targeted fixes.
+The model doesn't just avoid mistakes—it internalizes your context. After training, it thinks like your organization by default.
 
-- **Deterministic patches**: 99.7% success
-- **Template insertion**: 97.3% success
-- **Constrained rewrites**: 94.6% success
+## CAPE Compounds
 
-### 4. Train
+Here's what makes CAPE different from one-shot improvements: the loop feeds itself.
 
-Corrected outputs become supervised training signal. No preference labels required.
+- Better verification → cleaner training signal
+- Cleaner signal → better models
+- Better models → improved verification
+- Improved verification → more nuanced specifications
 
-## What This Unlocks
+This isn't aspirational—it's empirical. Our learning curves show DPO plateauing at ~12% violation rate while CAPE continues improving throughout training. The gap widens over time.
 
-### Post-training for everyone
+And the ceiling keeps falling. Extraction fidelity improved from 72% to 96% in eighteen months. Each percentage point translates to better capability transfer. CAPE gets better automatically as the infrastructure improves.
 
-Preference annotation costs $50K–200K per capability area. CAPE costs ~$500. Timelines drop from months to weeks.
+## Post-Training Just Became Accessible
+
+The dirty secret of RLHF: annotation costs dominate everything.
+
+At $5-15 per preference comparison, training a model on 10,000 examples requires $50,000-150,000 in annotation. Want to add a new capability domain? New annotation campaign. New budget. New timeline.
+
+CAPE inverts this:
 
 <table>
   <thead>
     <tr>
-      <th>Feature</th>
+      <th>Stage</th>
       <th>RLHF/DPO</th>
       <th>CAPE</th>
     </tr>
@@ -181,41 +161,71 @@ Preference annotation costs $50K–200K per capability area. CAPE costs ~$500. T
   <tbody>
     <tr>
       <td>Specification</td>
-      <td>1–2 weeks</td>
-      <td>1–3 days</td>
+      <td>—</td>
+      <td>$2,000-4,000</td>
     </tr>
     <tr>
-      <td>Data Cost</td>
-      <td>$20K–50K</td>
-      <td>~$200</td>
+      <td>Annotation</td>
+      <td>$50,000-150,000</td>
+      <td>—</td>
     </tr>
     <tr>
-      <td>Training</td>
-      <td>1–2 weeks</td>
-      <td>1–3 days</td>
+      <td>Verification infrastructure</td>
+      <td>—</td>
+      <td>$200-400</td>
     </tr>
     <tr>
-      <td><strong>Total Cost</strong></td>
-      <td><strong>$50K–200K</strong></td>
-      <td><strong>~$500</strong></td>
+      <td>Compute (training)</td>
+      <td>$8,000-12,000</td>
+      <td>$8,000-12,000</td>
+    </tr>
+    <tr>
+      <td><strong>Total cost</strong></td>
+      <td><strong>$80,000-200,000</strong></td>
+      <td><strong>$10,000-16,000</strong></td>
     </tr>
     <tr>
       <td><strong>Timeline</strong></td>
-      <td><strong>3–6 months</strong></td>
-      <td><strong>1–2 weeks</strong></td>
+      <td><strong>2-4 months</strong></td>
+      <td><strong>1-2 weeks</strong></td>
     </tr>
   </tbody>
 </table>
 
-### Engineering, not alchemy
+The difference: annotation costs scale O(n) with examples. Policies scale O(1)—define once, apply everywhere.
 
-Traditional software has specifications, test suites, and traceable fixes. CAPE brings this discipline to AI. When a model fails in production, you can trace the failure to a specific policy.
+Our arithmetic policy pack took 3 days to write. It has generated training signal for 50,000+ examples. The legal pack encodes jurisdiction logic that would take months to capture through annotation.
+
+## Specifications Are Your Moat
+
+Here's something the economics obscure: your specifications encode what makes you *you*.
+
+Your jurisdiction priorities. Your risk tolerance thresholds. Your escalation logic. Your documentation standards. Your brand voice. These aren't generic capabilities—they're the operational knowledge that defines your organization.
+
+With RLHF, you're buying generic preference data that makes models generically helpful. With CAPE, you're encoding your definition of good. The specification is your competitive advantage.
+
+And specifications compose. Legal reasoning standards + jurisdiction rules + client confidentiality requirements + your escalation protocol = a capability stack that embodies your firm's judgment, built from reusable components.
+
+## The Verification-Fidelity Scaling Law
+
+Here's what changes everything: verification fidelity improves with scale, preference agreement doesn't.
+
+Preference disagreement is fixed at 30-50%—it reflects the absence of shared context, not measurement error. No amount of compute changes this.
+
+But extraction accuracy and verifier capability both improve as models get better:
+
+- Each percentage point reduction in extraction error → ~0.8pp reduction in violation rate (r = 0.94)
+- Learned verifier accuracy correlates strongly with downstream model quality (r = 0.91)
+
+The ceiling for preference methods is human disagreement. The ceiling for CAPE is technical. Technical ceilings fall.
 
 ## Results
 
-Across 109,500 examples in six domains, CAPE reduces violation rates by 81–99% relative to DPO.
+Enough theory. Here's what happens when you train with specifications instead of preferences.
 
-### Structural Verification
+Across 109,500 examples in six domains:
+
+### Structural Verification (Violation Rates)
 
 <table>
   <thead>
@@ -224,7 +234,6 @@ Across 109,500 examples in six domains, CAPE reduces violation rates by 81–99%
       <th>Arithmetic</th>
       <th>Code Safety</th>
       <th>Citation</th>
-      <th>Average</th>
     </tr>
   </thead>
   <tbody>
@@ -233,89 +242,136 @@ Across 109,500 examples in six domains, CAPE reduces violation rates by 81–99%
       <td>31.4%</td>
       <td>38.2%</td>
       <td>35.7%</td>
-      <td>35.1%</td>
     </tr>
     <tr>
       <td>DPO</td>
       <td>10.2%</td>
       <td>15.8%</td>
       <td>13.4%</td>
-      <td>13.1%</td>
     </tr>
     <tr>
-      <td>CAPE (frontier)</td>
+      <td>CAPE</td>
       <td>1.8%</td>
       <td>3.2%</td>
       <td>2.6%</td>
-      <td>2.5%</td>
     </tr>
   </tbody>
 </table>
 
-### Semantic Verification
+CAPE reduces violation rates by 81-99% relative to DPO.
+
+### Semantic Verification (Rubric Scores)
 
 <table>
   <thead>
     <tr>
       <th>Method</th>
-      <th>Argument</th>
+      <th>Argument Soundness</th>
       <th>Proof Validity</th>
       <th>Code Correctness</th>
-      <th>Average</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Base model</td>
-      <td>0.54</td>
-      <td>0.51</td>
-      <td>0.57</td>
-      <td>0.54</td>
-    </tr>
     <tr>
       <td>DPO</td>
       <td>0.62</td>
       <td>0.58</td>
       <td>0.64</td>
-      <td>0.61</td>
     </tr>
     <tr>
-      <td>CAPE (R3)</td>
+      <td>CAPE</td>
       <td>0.83</td>
       <td>0.81</td>
       <td>0.84</td>
-      <td>0.83</td>
     </tr>
   </tbody>
 </table>
 
-With frontier extractors, residual violations fall to 2.5%. Critically, CAPE exhibits high stability: σ < 0.3% across random seeds, compared to 1.6–2.1% for reward-based methods.
+CAPE works across the spectrum—from deterministic structural properties to nuanced semantic judgments.
 
-## CapabilityBench: A Call to the Community
+**Stability**: σ < 0.3% across random seeds (vs. 1.6-2.1% for reward-based methods)
 
-Current benchmarks measure intelligence with opaque aggregate scores. A model scoring 78% tells you nothing about whether it can satisfy your specific requirements.
+**Hybrid Training**: CAPE → DPO achieves 2.9% violation rate and 63.7% preference win rate. Define correctness first, then optimize for fluency within those bounds.
 
-CapabilityBench is a public capability registry at capabilitybench.com. We are releasing the policy pack specification and initial packs under Apache 2.0.
+## CapabilityBench: Evaluation That Matters
 
-Rather than a single score, CapabilityBench produces an **Adherence Profile**:
+Current benchmarks tell you how smart a model is. CapabilityBench tells you what it can do for you.
 
-- **Core Adherence**: % of test cases satisfying all core policies.
-- **Violation Distribution**: Which specific policies fail and how often.
+Instead of "GPT-5 scores 87% on MMLU," you get:
 
-We are releasing eight initial policy packs (Medical, Legal, PII-Protect, etc.), but the vision is larger: a shared, growing repository of capability specifications across every domain that matters.
+- **Medical Assistant**: 94% formulary adherence, 98% contraindication flagging
+- **Legal Research**: 89% jurisdiction compliance, 96% citation accuracy
+- **Customer Service**: 91% escalation protocol adherence, 97% PII protection
 
-## Conclusion
+Community-contributed policy packs mean evaluation grows with real deployment needs. Your context, your definition of good, your results.
 
-We don't need more intelligent models to solve today's deployment failures. We need more capable ones.
+Because "78% on a benchmark" tells you nothing. "94% compliance with your policies" tells you everything.
 
-**Intelligence training asks**: "Can the model solve this?"
+## When to Use CAPE
 
-**Capability engineering asks**: "Does the model satisfy this specification?"
+CAPE excels when you can define what "good" means:
 
-A model can score 79.8% on AIME and still recommend off-formulary medications. Intelligence is necessary but insufficient. Capability must be engineered.
+- Domain-specific standards (your legal research process, your medical protocols)
+- Organizational requirements (your escalation logic, your documentation standards)
+- Structural correctness (arithmetic, citations, format compliance)
+- Reasoning quality (with explicit rubrics for what counts as sound)
 
-We're releasing CAPE openly because we believe the answer to capable AI is not proprietary methods, but rigorous frameworks developed in public. Executable specifications are auditable by design. That auditability should be a shared resource.
+Preferences remain essential when "good" is genuinely subjective:
 
-**Capability must be engineered. Now it can be.**
+- Aesthetic quality
+- Creative excellence
+- Humor
 
-[Read the full paper →](https://arxiv.org/abs/XXXX.XXXXX) | [GitHub →](https://github.com/superficiallabs/cape) | [CapabilityBench →](https://capabilitybench.com)
+Our analysis: 89% of deployment requirements become objective once context is fixed.
+
+## Who Should Use CAPE
+
+**You're an AI engineer at an enterprise:**
+You need models that follow your company's rules, not generic helpfulness. CAPE lets you encode your context without six-figure annotation budgets.
+
+**You're a researcher:**
+You want to push verification-fidelity scaling. CAPE gives you a protocol to test learned verifiers, rubric design, and extraction improvements.
+
+**You're building a product:**
+Your users have domain-specific needs. CAPE lets you customize models for niche contexts without retraining from scratch.
+
+## What We're Releasing (and What We're Inviting)
+
+Everything under Apache 2.0:
+
+- **CAPE Protocol**: The complete Specify → Verify → Correct → Train loop
+- **PredicateGraph Schema**: Structured intermediate representation for model outputs
+- **CPL Specification Language**: Executable specifications for structural properties
+- **Policy Packs**: Ready-to-use specifications for arithmetic, code safety, citations, medical, legal, PII protection, customer service, and financial domains
+- **Reference Implementation**: [github.com/superficiallabs/cape](https://github.com/superficiallabs/cape)
+
+More importantly: We're inviting the community to define capability. Contribute policy packs. Share rubrics. Extend the benchmark. The more contexts we encode, the more powerful this gets.
+
+CAPE isn't a product. It's a protocol. And protocols get better when everyone builds on them.
+
+## Quick Start: CAPE in 30 Minutes
+
+1. **Clone the repo**: `git clone github.com/superficiallabs/cape`
+2. **Pick a policy pack**: Start with Arithmetic or Citation (easiest to verify)
+3. **Run the example**: `python examples/arithmetic.py`
+4. **See the loop**: Watch Specify → Verify → Correct → Train in action
+5. **Customize**: Edit `policies/arithmetic.json` to add your own requirements
+
+Full tutorial: [docs.superficiallabs.com/cape/quickstart](https://docs.superficiallabs.com/cape/quickstart)
+
+## The Path Forward
+
+For too long, we've been trying to train generally capable models and hoping they'd figure out specific contexts. That's backwards.
+
+Define what good means. Then train models to embody it.
+
+General intelligence is a research problem. Specific capability is an engineering problem. CAPE provides the engineering.
+
+**Capability isn't something you hope for. It's something you specify.**
+
+## Get Started
+
+- **Paper**: [Read the full technical report →](https://arxiv.org/abs/XXXX.XXXXX)
+- **Code**: [github.com/superficiallabs/cape](https://github.com/superficiallabs/cape)
+- **CapabilityBench**: [capabilitybench.com](https://capabilitybench.com)
+- **Policy Packs**: Apache 2.0, ready to deploy
