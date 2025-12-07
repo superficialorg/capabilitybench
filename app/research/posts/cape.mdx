@@ -75,7 +75,7 @@ CAPE operationalizes capability engineering through a closed loop: Specify → V
 
 **Specify.** Convert requirements into executable policies. For structural properties (arithmetic correctness, citation format, safety patterns), this means symbolic policies written in CPL, our deterministic specification language. For semantic properties (reasoning validity, proof completeness, plan feasibility), this means learned verifiers trained on explicit rubrics.
 
-**Verify.** Parse model outputs into a structured representation called a PredicateGraph, then evaluate against policies. Symbolic verification is deterministic—same policy, same output, same verdict, every time. Learned verification uses rubric-trained models that detect specific failure modes rather than predicting annotator preferences.
+**Verify.** Parse model outputs into a structured representation called a PredicateGraph, then evaluate against policies. Symbolic verification is deterministic: isame policy, same output, same verdict, every time. Learned verification uses rubric-trained models that detect specific failure modes rather than predicting annotator preferences.
 
 **Correct.** When violations occur, generate corrections that satisfy the specification. This might be deterministic patching ("change 7.1 to 7.095"), template insertion for missing elements, or constrained rewriting for semantic changes. Every correction is re-verified before acceptance.
 
@@ -85,7 +85,7 @@ This loop avoids the pathologies of reward-based methods: no length bias from lo
 
 ## Why Now?
 
-Three technical advances made CAPE possible in 2025 that weren't feasible even a year ago:
+Three technical advances have made CAPE possible in 2025 that weren't feasible even a year ago:
 
 **Long context windows.** PredicateGraph extraction requires analyzing complete outputs. Until recently, context limits caused frequent truncation. Current models enable robust extraction of full output structure.
 
@@ -93,7 +93,7 @@ Three technical advances made CAPE possible in 2025 that weren't feasible even a
 
 **Structured generation.** JSON mode, grammar constraints, and constrained decoding have matured dramatically. Where earlier models scored below 40% on complex schema following, current structured output modes achieve near-perfect compliance.
 
-## The Scaling Law That Matters
+## Breaking the Preference Ceiling
 
 Here's what excites us most: CAPE's ceiling is technical, not human.
 
@@ -101,9 +101,9 @@ Preference-based methods plateau at human disagreement. No matter how much compu
 
 CAPE's ceiling is verification fidelity—how accurately we can parse outputs and evaluate them against specifications. For symbolic policies, this means extraction accuracy. For learned verifiers, this means rubric-following capability. Both improve with model scale.
 
-In our experiments, each percentage point reduction in extraction error corresponded to approximately 0.8 percentage points reduction in violation rate (r = 0.94). Better extractors mean better training signal means better models means... better extractors. The loop compounds.
+In our experiments, each percentage point reduction in extraction error corresponded to approximately 0.8 percentage points reduction in violation rate (r = 0.94). Extraction quality determines your ceiling. And because extraction improves with model scale, CAPE benefits twice from continued progress: better base models to train, and better extractors to train them with.
 
-This is a genuine scaling law: invest in verification quality, and model quality follows.
+This is a genuine scaling law: invest in verification quality, and model capability follows.
 
 ## Results
 
