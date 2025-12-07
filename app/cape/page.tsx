@@ -13,7 +13,7 @@ export default function Cape() {
       </h1>
       <article className="prose">
         <p className="mb-12">
-          We work with frontier labs, regulated enterprises, and AI companies to deploy CAPE at scale.
+          We work with frontier labs, regulated enterprises, and AI companies to deploy CAPE at scale. We offer:
         </p>
         <ul className="space-y-4 mb-16">
           <li><strong>Specification engineering</strong> — Translate requirements into executable capability policies.</li>
