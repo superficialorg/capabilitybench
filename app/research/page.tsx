@@ -15,7 +15,7 @@ export default function Page() {
     <section>
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">Research</h1>
       <p className="mb-8">
-        We believe AI accelerates human progress only when capability and reliability move forward together. Our research creates transparent, interpretable, and verifiable systems that make that possible.
+        We believe AI accelerates human progress only when intelligence and capability move forward together. Our research creates transparent, interpretable, and verifiable systems that make that possible.
       </p>
       <div className="mt-12">
         {researchPosts
