@@ -105,9 +105,9 @@ In our experiments, each percentage point reduction in extraction error correspo
 
 This is a genuine scaling law: invest in verification quality, and model capability follows.
 
-## Results
+## Performance
 
-Across 109,500 examples in six domains, CAPE reduces violation rates by 81–99% relative to DPO:
+Violation rate measures capability directly: does the model satisfy the specification or not? Across 109,500 examples in six domains, CAPE reduces violation rates by 81–99% relative to DPO:
 
 <table>
   <thead>
@@ -153,15 +153,15 @@ Across 109,500 examples in six domains, CAPE reduces violation rates by 81–99%
 
 Perhaps more importantly, CAPE's improvements are stable. While reward-based methods show high variance across random seeds (σ = 1.6–2.1%), CAPE achieves σ less than 0.3%. When you run the same training with different seeds, you get essentially the same result.
 
-Hybrid training works too. Running CAPE first to establish a correctness floor, then DPO to optimize quality within constraints, achieves both low violation rates (2.9%) and high preference win rates (63.7%). Capability and quality aren't in tension—they compose.
+Hybrid training works too. Running CAPE first to establish a correctness floor, then DPO to optimize quality within constraints, achieves both low violation rates (2.9%) and high preference win rates (63.7%).
 
-## The Economics Change Everything
+## Accessible Post-Training
 
 CAPE reduces capability-specific post-training costs by 20–200× by replacing per-example annotation with reusable specifications.
 
-Here's the math. Preference annotation costs $5–15 per comparison. To get quality signal, you need 5+ comparisons per example. For a training set of 10,000 examples, that's $50,000–150,000 in annotation costs alone. And that's per capability—adding citation grounding after you've trained arithmetic requires a whole new annotation campaign.
+Here's the math. Preference annotation costs $5–15 per comparison. To get quality signal, you need 5+ comparisons per example. For a training set of 10,000 examples, that's $50,000–150,000 in annotation costs alone. And that's per capability. Adding citation grounding after you've trained arithmetic requires a whole new annotation campaign.
 
-CAPE's upfront cost is policy authoring: 2–5 days of domain expert and engineer time ($2,000–4,000 fully loaded). But that policy then generates unlimited training signal. Our arithmetic policy pack, authored in three days, has generated signal for 50,000+ examples across multiple training runs and model versions.
+CAPE's upfront cost is policy authoring: 2–5 days of domain expert and engineer time ($2,000–4,000 fully loaded). But that policy then generates unlimited training signal.
 
 <table>
   <thead>
@@ -213,6 +213,8 @@ CAPE's upfront cost is policy authoring: 2–5 days of domain expert and enginee
 The iteration cycle difference matters just as much. When a preference-trained model fails, you know something went wrong but not what. Diagnosing the problem requires new annotation campaigns. CAPE's explicit verdicts tell you exactly which policies fail on which outputs: "policy.citation.factual_claims_cited failed on 847 of 10,000 examples." Engineers fix the policy or the correction strategy directly.
 
 This cost structure means capability engineering is accessible to far more teams. You don't need a massive annotation budget. You need domain expertise and engineering time.
+
+The same policies also compound in value. As base models improve, your existing policy packs yield better results without rework—you're not re-annotating, you're re-running.
 
 ## Introducing CapabilityBench
 
