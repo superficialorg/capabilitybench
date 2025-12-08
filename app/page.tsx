@@ -17,11 +17,11 @@ export default function Home() {
         </p>
         
         <p className="mt-8">
-          Benchmarks measure intelligence. But deployment requires capability: does the model satisfy specific requirements? Not "how smart is this model?" but "can it do what I need?"
+          Benchmarks measure intelligence. Deployment requires capability. The real question isn't "how smart is this model?" but "can it satisfy the requirements that matter?"
         </p>
         
         <p className="mb-16">
-          CapabilityBench evaluates models against executable specifications like regulatory compliance (HIPAA, GDPR), financial suitability rules, clinical protocol adherence, multi-step workflow execution. Instead of aggregate scores, you see exactly what each model can and can't do.
+          CapabilityBench evaluates models against executable specifications — regulatory compliance (HIPAA, GDPR), financial suitability rules, clinical protocol adherence, workflow execution, and more. Instead of aggregate scores, it shows exactly what a model can and cannot do, with verifiable, requirement-level results.
         </p>
         
         <h2 className="font-semibold text-lg mt-12 mb-4">Private Beta</h2>
@@ -31,7 +31,7 @@ export default function Home() {
         </p>
         
         <p>
-          We want to build this with the community. If you have capability requirements that should be standardized, domains that need coverage, or feedback on the approach, we want to hear from you.
+          We're building this with the community. If you have capability requirements that should be standardised, domains that need evaluation coverage, or feedback on the approach, we want to hear from you.
         </p>
         
         <p className="mt-8">
