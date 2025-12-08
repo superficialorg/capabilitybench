@@ -26,7 +26,7 @@ export default function Home() {
         </p>
 
         <p>
-          Today we're launching CapabilityBench (in private beta), a public registry that replaces opaque intelligence scores with traceable capability verdicts.
+          We're launching CapabilityBench, a public registry that replaces opaque intelligence scores with traceable capability verdicts.
         </p>
 
         <p>
