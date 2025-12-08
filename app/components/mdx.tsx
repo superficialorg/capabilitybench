@@ -2,7 +2,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
-import { ArrowUpRight } from 'lucide-react'
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -41,12 +40,11 @@ function CustomLink(props) {
     return <a {...props} />
   }
 
-  // Add arrow icon for http/https external links
+  // Italicize http/https external links
   if (href.startsWith('http://') || href.startsWith('https://')) {
     return (
-      <a target="_blank" rel="noopener noreferrer" {...props} className="inline-flex items-center gap-0.5">
+      <a target="_blank" rel="noopener noreferrer" {...props} className="italic">
         {props.children}
-        <ArrowUpRight className="w-4 h-4" />
       </a>
     )
   }
@@ -61,18 +59,16 @@ function RoundedImage(props) {
 
 function ExternalLink({ href, children }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5">
+    <a href={href} target="_blank" rel="noopener noreferrer" className="italic">
       {children}
-      <ArrowUpRight className="w-4 h-4" />
     </a>
   )
 }
 
 function InternalLink({ href, children }) {
   return (
-    <Link href={href} className="inline-flex items-center gap-0.5">
+    <Link href={href} className="italic">
       {children}
-      <ArrowUpRight className="w-4 h-4" />
     </Link>
   )
 }

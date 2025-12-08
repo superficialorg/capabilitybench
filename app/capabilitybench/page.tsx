@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { ArrowUpRight } from 'lucide-react'
 
 export const metadata = {
   title: 'CapabilityBench',
@@ -13,31 +12,36 @@ export default function CapabilityBench() {
         CapabilityBench
       </h1>
       <article className="prose">
-        <p className="flex gap-4">
-          <a href="https://github.com/superficiallabs/cape/blob/main/CAPE.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5">
-            full paper <ArrowUpRight className="w-4 h-4" />
+        <p className="flex gap-4 italic">
+          <a href="https://github.com/superficiallabs/cape/blob/main/CAPE.pdf" target="_blank" rel="noopener noreferrer">
+            full paper
           </a>
-          <Link href="/research/cape" className="inline-flex items-center gap-0.5">
-            launch post <ArrowUpRight className="w-4 h-4" />
+          <span>·</span>
+          <Link href="/research/cape">
+            launch post
           </Link>
         </p>
         
         <p className="mt-8">
-          Current benchmarks measure intelligence: can the model solve this problem? But deployment requires knowing capability: does the model satisfy specific requirements?
+          Benchmarks measure intelligence. But deployment requires capability: does the model satisfy specific requirements? Not "how smart is this model?" but "can it do what I need?"
         </p>
         
         <p className="mb-16">
-          CapabilityBench is a public registry where models are evaluated against community-contributed policies. Instead of aggregate scores, CapabilityBench presents traceable verdicts showing exactly which capability specifications each model satisfies or violates.
+          CapabilityBench evaluates models against executable specifications like regulatory compliance (HIPAA, GDPR), financial suitability rules, clinical protocol adherence, multi-step workflow execution. Instead of aggregate scores, you see exactly what each model can and can't do.
         </p>
         
         <h2 className="font-semibold text-lg mt-12 mb-4">Private Beta</h2>
         
         <p>
-          CapabilityBench is currently in private beta with public release planned for early 2026.
+          CapabilityBench launches publicly in early 2026.
         </p>
         
         <p>
-          We're inviting organizations and researchers to contribute to CapabilityBench. If you would like to contribute, reach out to our team at <Link href="mailto:research@superficiallabs.com">research@superficiallabs.com</Link>.
+          We want to build this with the community. If you have capability requirements that should be standardized, domains that need coverage, or feedback on the approach, we want to hear from you.
+        </p>
+        
+        <p className="mt-8">
+          <Link href="mailto:research@superficiallabs.com">research@superficiallabs.com</Link>
         </p>
       </article>
     </section>

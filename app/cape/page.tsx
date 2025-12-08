@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { ArrowUpRight } from 'lucide-react'
 
 export const metadata = {
   title: 'CAPE',
@@ -13,12 +12,13 @@ export default function Cape() {
         CAPE
       </h1>
       <article className="prose">
-        <p className="flex gap-4">
-          <a href="https://github.com/superficiallabs/cape/blob/main/CAPE.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5">
-            full paper <ArrowUpRight className="w-4 h-4" />
+        <p className="flex gap-4 italic">
+          <a href="https://github.com/superficiallabs/cape/blob/main/CAPE.pdf" target="_blank" rel="noopener noreferrer">
+            full paper
           </a>
-          <Link href="/research/cape" className="inline-flex items-center gap-0.5">
-            launch post <ArrowUpRight className="w-4 h-4" />
+          <span>·</span>
+          <Link href="/research/cape">
+            launch post
           </Link>
         </p>
         

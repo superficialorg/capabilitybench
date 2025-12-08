@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowUpRight } from 'lucide-react'
 
 export default function Page() {
   return (
@@ -27,7 +26,7 @@ export default function Page() {
           href="/research/cape"
           className="text-black font-medium transition-colors hover:text-neutral-600"
         >
-          Introducing CAPE: From Intelligence Training to Capability Engineering <ArrowUpRight className="w-4 h-4 inline-block align-middle" />
+          <span className="italic">Introducing CAPE: From Intelligence Training to Capability Engineering</span>
         </Link>
       </div>
     </section>
