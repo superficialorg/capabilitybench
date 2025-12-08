@@ -34,7 +34,7 @@ export default function Page() {
               href={`/research/${post.slug}`}
             >
               <div className="w-full flex flex-col">
-                <div className="flex items-center gap-2 mb-1 no-link-style">
+                <div className="flex items-center gap-2 mb-1">
                   <p className="text-black tabular-nums whitespace-nowrap text-sm">
                     {formatDate(post.metadata.publishedAt, false)}
                   </p>
@@ -45,7 +45,7 @@ export default function Page() {
                     </span>
                   )}
                 </div>
-                <p className="text-black tracking-tight font-medium link-title">
+                <p className="text-black tracking-tight font-medium">
                   {post.metadata.title}
                 </p>
               </div>

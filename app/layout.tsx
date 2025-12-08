@@ -60,9 +60,6 @@ export default function RootLayout({
         inter.className
       )}
     >
-      <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/fonts.css" />
-      </head>
       <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto text-black">
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
           <Navbar />
