@@ -68,6 +68,15 @@ function ExternalLink({ href, children }) {
   )
 }
 
+function InternalLink({ href, children }) {
+  return (
+    <Link href={href} className="inline-flex items-center gap-0.5">
+      {children}
+      <ArrowUpRight className="w-4 h-4" />
+    </Link>
+  )
+}
+
 function Code({ children, ...props }) {
   if (typeof children !== 'string') {
     return <code {...props}>{children}</code>
@@ -118,6 +127,7 @@ let components = {
   code: Code,
   Table,
   ExternalLink,
+  InternalLink,
 }
 
 export function CustomMDX(props) {
