@@ -21,7 +21,7 @@ export default function Home() {
         </p>
         
         <p className="mb-16">
-          CapabilityBench evaluates models against executable specifications — regulatory compliance (HIPAA, GDPR), financial suitability rules, clinical protocol adherence, workflow execution, and more. Instead of aggregate scores, it shows exactly what a model can and cannot do, with verifiable, requirement-level results.
+          CapabilityBench evaluates models against executable specifications like regulatory compliance (HIPAA, GDPR), financial suitability rules, clinical protocol adherence, workflow execution, and more. Instead of aggregate intelligence scores, it shows exactly what a model can and cannot do, with verifiable, capability-level results.
         </p>
         
         <h2 className="font-semibold text-lg mt-12 mb-4">Private Beta</h2>
