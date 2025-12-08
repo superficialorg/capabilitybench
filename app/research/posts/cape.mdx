@@ -77,7 +77,7 @@ CAPE operationalizes capability engineering through a closed loop: Specify → V
 
 **Specify.** Convert requirements into executable policies. For structural properties (arithmetic correctness, citation format, safety patterns), this means symbolic policies written in CPL, our deterministic specification language. For semantic properties (reasoning validity, proof completeness, plan feasibility), this means learned verifiers trained on explicit rubrics.
 
-**Verify.** Parse model outputs into a structured representation called a PredicateGraph, then evaluate against policies. Symbolic verification is deterministic: isame policy, same output, same verdict, every time. Learned verification uses rubric-trained models that detect specific failure modes rather than predicting annotator preferences.
+**Verify.** Parse model outputs into a structured representation called a PredicateGraph, then evaluate against policies. Symbolic verification is deterministic: same policy, same output, same verdict, every time. Learned verification uses rubric-trained models that detect specific failure modes rather than predicting annotator preferences.
 
 **Correct.** When violations occur, generate corrections that satisfy the specification. This might be deterministic patching ("change 7.1 to 7.095"), template insertion for missing elements, or constrained rewriting for semantic changes. Every correction is re-verified before acceptance.
 
