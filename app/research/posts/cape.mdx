@@ -109,7 +109,7 @@ This is a genuine scaling law: invest in verification quality, and model capabil
 
 ## Performance
 
-Violation rate measures capability directly: does the model satisfy the specification or not? Across 109,500 examples in six domains, CAPE reduces violation rates by 81–99% relative to DPO:
+Violation rate measures capability directly: does the model satisfy the specification or not? Across 109,500 examples in six domains, CAPE reduces violation rates by 81% relative to DPO:
 
 <table>
   <thead>
@@ -159,7 +159,7 @@ Hybrid training works too. Running CAPE first to establish a correctness floor, 
 
 ## Accessible Post-Training
 
-CAPE reduces capability-specific post-training costs by 20–200× by replacing per-example annotation with reusable specifications.
+CAPE reduces capability-specific post-training costs by 5–20× by replacing per-example annotation with reusable specifications.
 
 Here's the math. Preference annotation costs $5–15 per comparison. To get quality signal, you need 5+ comparisons per example. For a training set of 10,000 examples, that's $50,000–150,000 in annotation costs alone. And that's per capability. Adding citation grounding after you've trained arithmetic requires a whole new annotation campaign.
 
