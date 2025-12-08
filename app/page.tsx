@@ -29,7 +29,7 @@ export default function Home() {
         </p>
         
         <p>
-          We're building this with the community. If you have capability requirements that should be standardised, domains that need evaluation coverage, or feedback on the approach, we want to hear from you.
+          We're building an open, shared library of executable capabilities. If your domain has requirements that models should meet, we'd love to hear from you.
         </p>
         
         <p className="mt-8">
