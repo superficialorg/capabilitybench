@@ -12,7 +12,7 @@ export default function Home() {
       <article className="prose">
         <p className="flex gap-4 italic">
           <a href="https://github.com/superficiallabs/cape/blob/main/CAPE.pdf" target="_blank" rel="noopener noreferrer">
-            CAPE full paper
+            Read the paper
           </a>
         </p>
         
