@@ -19,7 +19,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             target="_blank"
           >
-            github
+            GitHub
           </a>
           <a
             href="mailto:contact@superficiallabs.com"

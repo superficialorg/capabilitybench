@@ -1,6 +1,6 @@
 import './global.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Cormorant_Garamond } from 'next/font/google'
 import { Navbar } from './components/nav'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -8,6 +8,11 @@ import Footer from './components/footer'
 import { baseUrl } from './sitemap'
 
 const inter = Inter({ subsets: ['latin'] })
+const cormorant = Cormorant_Garamond({ 
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-cormorant'
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -57,7 +62,8 @@ export default function RootLayout({
       lang="en"
       className={cx(
         'text-black bg-white',
-        inter.className
+        inter.className,
+        cormorant.variable
       )}
     >
       <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto text-black">

@@ -49,6 +49,12 @@ html {
 
 .prose a {
   @apply transition-all;
+  font-family: var(--font-cormorant), serif;
+}
+
+/* Apply Cormorant Garamond to all page links */
+article a, section a:not(nav a) {
+  font-family: var(--font-cormorant), serif;
 }
 
 .prose .anchor:after {
