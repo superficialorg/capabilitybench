@@ -17,7 +17,7 @@ export default function Home() {
         </p>
         
         <p className="mt-8">
-          Benchmarks measure intelligence. Deployment requires capability. The real question isn't "how smart is this model?" but "can it satisfy the requirements that matter?"
+          Benchmarks measure intelligence. But deployment requires capability. The real question isn't "how smart is this model?" but "can it satisfy the requirements that matter?"
         </p>
         
         <p className="mb-16">
