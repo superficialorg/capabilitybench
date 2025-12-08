@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 export default function Footer() {
   return (
     <footer className="mb-16">
@@ -27,12 +25,6 @@ export default function Footer() {
           >
             Contact
           </a>
-          <Link href="/terms" className="transition-all hover:text-neutral-800">
-            Terms
-          </Link>
-          <Link href="/privacy" className="transition-all hover:text-neutral-800">
-            Privacy
-          </Link>
         </div>
         <p className="mt-4">© {new Date().getFullYear()} Superficial Labs</p>
       </div>

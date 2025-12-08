@@ -5,17 +5,16 @@ import { Navbar } from './components/nav'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import Footer from './components/footer'
-import { baseUrl } from './sitemap'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(baseUrl),
+  metadataBase: new URL('https://capabilitybench.com'),
   title: {
-    default: 'Superficial',
-    template: '%s | Superficial',
+    default: 'CapabilityBench',
+    template: '%s | CapabilityBench',
   },
-  description: 'This is my portfolio.',
+  description: 'A public registry that replaces opaque intelligence scores with traceable capability verdicts.',
   icons: {
     icon: [
       { url: '/Favicon2.png' },
@@ -25,10 +24,10 @@ export const metadata: Metadata = {
     apple: '/Favicon2.png',
   },
   openGraph: {
-    title: 'Superficial',
-    description: 'This is my portfolio.',
-    url: baseUrl,
-    siteName: 'Superficial',
+    title: 'CapabilityBench',
+    description: 'A public registry that replaces opaque intelligence scores with traceable capability verdicts.',
+    url: 'https://capabilitybench.com',
+    siteName: 'CapabilityBench',
     locale: 'en_US',
     type: 'website',
   },
@@ -45,7 +44,7 @@ export const metadata: Metadata = {
   },
 }
 
-const cx = (...classes) => classes.filter(Boolean).join(' ')
+const cx = (...classes: (string | undefined | false)[]) => classes.filter(Boolean).join(' ')
 
 export default function RootLayout({
   children,
