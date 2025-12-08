@@ -6,10 +6,13 @@ const inter = Inter({ subsets: ['latin'] })
 
 const navItems = {
   '/research': {
-    name: 'research',
+    name: 'Research',
   },
   '/cape': {
-    name: 'cape',
+    name: 'CAPE',
+  },
+  '/capabilitybench': {
+    name: 'CapabilityBench',
   },
 }
 
