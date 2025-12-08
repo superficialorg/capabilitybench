@@ -4,6 +4,14 @@ export default function Footer() {
       <div className="mt-8 text-black text-sm">
         <div className="flex items-center gap-4 flex-wrap">
           <a
+            href="https://www.superficiallabs.com"
+            className="transition-all hover:text-neutral-800"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Superficial
+          </a>
+          <a
             href="https://x.com/superficiallabs"
             className="transition-all hover:text-neutral-800"
             rel="noopener noreferrer"
