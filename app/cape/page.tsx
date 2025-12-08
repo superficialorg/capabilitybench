@@ -14,7 +14,7 @@ export default function Cape() {
       </h1>
       <article className="prose">
         <p className="flex gap-4">
-          <a href="https://arxiv.org/abs/XXXX.XXXXX" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5">
+          <a href="https://github.com/superficiallabs/cape/blob/main/CAPE.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5">
             Full Paper <ArrowUpRight className="w-4 h-4" />
           </a>
           <Link href="/research/cape" className="inline-flex items-center gap-0.5">
