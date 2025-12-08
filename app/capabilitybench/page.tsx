@@ -14,11 +14,11 @@ export default function CapabilityBench() {
       <article className="prose">
         <p className="flex gap-4 italic">
           <a href="https://github.com/superficiallabs/cape/blob/main/CAPE.pdf" target="_blank" rel="noopener noreferrer">
-            Full Paper
+            CAPE full paper
           </a>
           <span>·</span>
           <Link href="/research/cape">
-            Launch Post
+            CAPE launch post
           </Link>
         </p>
         
