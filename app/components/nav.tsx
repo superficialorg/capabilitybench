@@ -13,8 +13,8 @@ export function Navbar() {
           id="nav"
         >
           <Link href="/" className="flex items-center align-middle relative py-1 pl-0 gap-2">
-            <Image src="/Logo1.png" alt="CapabilityBench Logo" width={23} height={23} />
-            <span className={`${inter.className} font-semibold text-lg`}>CapabilityBench</span>
+            <Image src="/Logo1.png" alt="Superficial Logo" width={23} height={23} />
+            <span className={`${inter.className} font-semibold text-lg`}>Superficial</span>
           </Link>
         </nav>
       </div>
