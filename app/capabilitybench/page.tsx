@@ -33,17 +33,11 @@ export default function CapabilityBench() {
         <h2 className="font-semibold text-lg mt-12 mb-4">Private Beta</h2>
         
         <p>
-          CapabilityBench is currently in private beta. Public release is planned for early 2026.
+          CapabilityBench is currently in private beta with public release planned for early 2026.
         </p>
         
         <p>
-          Request early access: <Link href="mailto:research@superficiallabs.com">research@superficiallabs.com</Link>
-        </p>
-        
-        <h2 className="font-semibold text-lg mt-12 mb-4">Contribute</h2>
-        
-        <p>
-          We're inviting organizations and researchers to contribute to CapabilityBench. If you have capability requirements that you would like to see standardized and evaluated across models, we'd love to hear from you.
+          We're inviting organizations and researchers to contribute to CapabilityBench. If you would like to contribute, reach out to our team at <Link href="mailto:research@superficiallabs.com">research@superficiallabs.com</Link>.
         </p>
       </article>
     </section>
