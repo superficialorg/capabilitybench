@@ -14,8 +14,8 @@ export default function CapabilityBench() {
       </h1>
       <article className="prose">
         <p className="flex gap-4">
-          <a href="https://capabilitybench.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5">
-            CapabilityBench <ArrowUpRight className="w-4 h-4" />
+          <a href="https://arxiv.org/abs/XXXX.XXXXX" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5">
+            Full Paper <ArrowUpRight className="w-4 h-4" />
           </a>
           <Link href="/research/cape" className="inline-flex items-center gap-0.5">
             Launch Post <ArrowUpRight className="w-4 h-4" />
@@ -27,7 +27,7 @@ export default function CapabilityBench() {
         </p>
         
         <p className="mb-16">
-          CapabilityBench is a public registry where models are evaluated against community-contributed policies. Instead of aggregate scores, CapabilityBench presents traceable verdicts showing exactly which requirements each model satisfies or violates.
+          CapabilityBench is a public registry where models are evaluated against community-contributed policies. Instead of aggregate scores, CapabilityBench presents traceable verdicts showing exactly which capability specifications each model satisfies or violates.
         </p>
         
         <h2 className="font-semibold text-lg mt-12 mb-4">Private Beta</h2>
@@ -43,7 +43,7 @@ export default function CapabilityBench() {
         <h2 className="font-semibold text-lg mt-12 mb-4">Contribute</h2>
         
         <p>
-          We're inviting organizations and researchers to contribute policy packs. If you have capability requirements that should be standardized and evaluated across models, we'd love to hear from you.
+          We're inviting organizations and researchers to contribute to CapabilityBench. If you have capability requirements that you would like to see standardized and evaluated across models, we'd love to hear from you.
         </p>
       </article>
     </section>
