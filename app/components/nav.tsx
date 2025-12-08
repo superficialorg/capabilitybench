@@ -11,9 +11,6 @@ const navItems = {
   '/cape': {
     name: 'cape',
   },
-  '/capabilitybench': {
-    name: 'capabilitybench',
-  },
 }
 
 export function Navbar() {
@@ -34,7 +31,7 @@ export function Navbar() {
                 <Link
                   key={path}
                   href={path}
-                  className="transition-all hover:text-neutral-800 flex align-middle relative py-1 px-2 m-1 text-black whitespace-nowrap text-sm"
+                  className="transition-all hover:text-neutral-800 flex align-middle relative py-1 px-2 m-1 text-black whitespace-nowrap"
                 >
                   {name}
                 </Link>
