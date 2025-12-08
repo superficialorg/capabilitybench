@@ -1,6 +1,6 @@
 import './global.css'
 import type { Metadata } from 'next'
-import { Inter, EB_Garamond } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import { Navbar } from './components/nav'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -8,11 +8,6 @@ import Footer from './components/footer'
 import { baseUrl } from './sitemap'
 
 const inter = Inter({ subsets: ['latin'] })
-const garamond = EB_Garamond({ 
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-garamond'
-})
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -62,10 +57,12 @@ export default function RootLayout({
       lang="en"
       className={cx(
         'text-black bg-white',
-        inter.className,
-        garamond.variable
+        inter.className
       )}
     >
+      <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/fonts.css" />
+      </head>
       <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto text-black">
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
           <Navbar />

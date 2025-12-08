@@ -49,16 +49,23 @@ html {
 
 .prose a {
   @apply transition-all;
-  font-family: var(--font-garamond), serif;
+  font-family: 'Computer Modern Serif', serif;
   font-weight: 600;
   font-size: 1.1em;
 }
 
-/* Apply Cormorant Garamond to all page links */
+/* Apply CMU Serif to page links, but not navigation */
 article a, section a:not(nav a) {
-  font-family: var(--font-garamond), serif;
+  font-family: 'Computer Modern Serif', serif;
   font-weight: 600;
   font-size: 1.1em;
+}
+
+/* Reset font for elements that shouldn't have link styling */
+.no-link-style, .no-link-style * {
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  font-size: inherit !important;
 }
 
 .prose .anchor:after {
