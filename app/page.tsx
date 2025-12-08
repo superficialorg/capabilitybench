@@ -24,8 +24,6 @@ export default function Home() {
           CapabilityBench evaluates models against executable specifications like regulatory compliance (HIPAA, GDPR), financial suitability rules, clinical protocol adherence, workflow execution, and more. Instead of aggregate intelligence scores, it shows exactly what a model can and cannot do, with verifiable, capability-level results.
         </p>
         
-        <h2 className="font-semibold text-lg mt-12 mb-4">Private Beta</h2>
-        
         <p>
           CapabilityBench launches publicly in early 2026.
         </p>
