@@ -10,10 +10,11 @@ export default function Home() {
         CapabilityBench
       </h1>
       <article className="prose">
-        <p className="flex gap-4 italic">
+        <p className="flex gap-2 items-center">
           <a href="https://github.com/superficiallabs/cape/blob/main/CAPE.pdf" target="_blank" rel="noopener noreferrer">
             Read the paper
           </a>
+          <span>→</span>
         </p>
         
         <p className="mt-8">
