@@ -34,8 +34,8 @@ export default function Cape() {
           <li><strong>Learned Verifiers</strong> — Train rubric-based verifiers for semantic properties.</li>
         </ul>
         
-        <p className="mt-12">
-          Interested in deploying CAPE? Contact us at <Link href="mailto:contact@superficiallabs.com">contact@superficiallabs.com</Link>
+        <p className="mt-16">
+          Speak with our team about deploying CAPE: <Link href="mailto:contact@superficiallabs.com">contact@superficiallabs.com</Link>
         </p>
       </article>
     </section>
