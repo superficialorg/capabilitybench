@@ -49,14 +49,14 @@ html {
 
 .prose a {
   @apply transition-all;
-  font-family: var(--font-cormorant), serif;
+  font-family: var(--font-garamond), serif;
   font-weight: 600;
   font-size: 1.1em;
 }
 
 /* Apply Cormorant Garamond to all page links */
 article a, section a:not(nav a) {
-  font-family: var(--font-cormorant), serif;
+  font-family: var(--font-garamond), serif;
   font-weight: 600;
   font-size: 1.1em;
 }
