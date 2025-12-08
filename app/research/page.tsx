@@ -45,7 +45,7 @@ export default function Page() {
                     </span>
                   )}
                 </div>
-                <p className="text-black tracking-tight font-medium">
+                <p className="text-black tracking-tight font-medium italic">
                   {post.metadata.title}
                 </p>
               </div>

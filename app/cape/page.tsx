@@ -12,11 +12,7 @@ export default function Cape() {
         CAPE
       </h1>
       <article className="prose">
-        <p className="flex gap-4 italic">
-          <a href="https://github.com/superficiallabs/cape/blob/main/CAPE.pdf" target="_blank" rel="noopener noreferrer">
-            Full Paper
-          </a>
-          <span>·</span>
+        <p className="italic">
           <Link href="/research/cape">
             Launch Post
           </Link>

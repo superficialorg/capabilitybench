@@ -48,7 +48,12 @@ html {
 }
 
 .prose a {
-  @apply transition-all;
+  @apply transition-all font-medium;
+}
+
+/* Apply medium weight to page links */
+article a, section a:not(nav a) {
+  @apply font-medium;
 }
 
 .prose .anchor:after {
