@@ -33,29 +33,6 @@ export default function Home() {
           The question shifts from "how smart is this model?" to "can this model do what I need?"
         </p>
 
-        <h2 className="font-semibold text-lg mt-12 mb-4">Available Now: Anthropic Skills Suite</h2>
-        
-        <p>
-          As a proof of concept, we converted all 16 of Anthropic's official Agent Skills into executable CAPE specifications.
-        </p>
-
-        <p>
-          Standard skills provide instructions for models to read. Policy packs provide specification logic for systems to execute. Subjective guidance like "avoid AI slop" or "preserve file integrity" becomes objective verdicts, enabling inference-time verification and training-time supervision.
-        </p>
-
-        <ul className="my-4">
-          <li><strong>16 Policy Packs:</strong> Document creation, frontend design, testing, creative coding, internal communications</li>
-          <li><strong>Static Verification:</strong> All predicates use file parsing and code analysis. No execution required.</li>
-          <li><strong>Configurable Thresholds:</strong> Each policy documents its assumptions and provides configuration profiles for different contexts</li>
-          <li><strong>Ready to Run:</strong> Verify outputs from any model available today</li>
-        </ul>
-
-        <p className="mb-12">
-          <a href="https://github.com/superficiallabs/cape/tree/main/cape-skills" target="_blank" rel="noopener noreferrer">
-            View on GitHub →
-          </a>
-        </p>
-
         <h2 className="font-semibold text-lg mt-12 mb-4">Full Registry: Early 2026</h2>
         
         <p>
