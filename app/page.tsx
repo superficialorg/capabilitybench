@@ -22,7 +22,7 @@ export default function Home() {
         </p>
         
         <p className="mb-8">
-          We are building an open library of executable capabilities. CapabilityBench will host:
+          We are building a library of open, executable capability specifications to close this deployment gap. CapabilityBench will host:
         </p>
 
         <p className="my-2">
